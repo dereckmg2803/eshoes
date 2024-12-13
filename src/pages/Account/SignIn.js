@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { logoLight } from "../../assets/images";
-
 const SignIn = () => {
   // ============= Initial State Start here =============
   const [email, setEmail] = useState("");
@@ -24,7 +23,8 @@ const SignIn = () => {
     setErrPassword("");
   };
   // ============= Event Handler End here ===============
-  const handleSignUp = (e) => {
+  
+  const handleSignIn = (e) => {
     e.preventDefault();
 
     if (!email) {
@@ -34,15 +34,39 @@ const SignIn = () => {
     if (!password) {
       setErrPassword("Create a password");
     }
-    // ============== Getting the value ==============
+
+    // ============== Verificar si el email y la contraseña son válidos ==============
     if (email && password) {
-      setSuccessMsg(
-        `Hello dear, Thank you for your attempt. We are processing to validate your access. Till then stay connected and additional assistance will be sent to you by your mail at ${email}`
-      );
-      setEmail("");
-      setPassword("");
+      // Realizar la solicitud GET para obtener los usuarios
+      fetch("http://localhost:3000/usuarios/obtenerusuarios")
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            // Buscar el usuario con el email ingresado
+            const user = data.data.find((user) => user.correo_electronico === email);
+
+            // Verificar si el usuario existe y la contraseña es correcta
+            if (user) {
+              if (user.contrasena === password) {
+                setSuccessMsg(`Ingresaste de sesión con éxito`);
+                setEmail("");
+                setPassword("");
+              } else {
+                setErrPassword("Incorrect password");
+              }
+            } else {
+              setErrEmail("Email not found");
+            }
+          } else {
+            setErrEmail("Error fetching users data");
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          setErrEmail("Error connecting to the server");
+        });
     }
-  };
+};
   return (
     <div className="w-full h-screen flex items-center justify-center">
       <div className="w-1/2 hidden lgl:inline-flex h-full text-white">
@@ -176,7 +200,7 @@ const SignIn = () => {
                 </div>
 
                 <button
-                  onClick={handleSignUp}
+                  onClick={handleSignIn}
                   className="bg-primeColor hover:bg-black text-gray-200 hover:text-white cursor-pointer w-full text-base font-medium h-10 rounded-md  duration-300"
                 >
                   Sign In

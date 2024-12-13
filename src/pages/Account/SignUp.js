@@ -103,7 +103,8 @@ const SignUp = () => {
       if (!zip) {
         setErrZip("Enter the zip code of your area");
       }
-      // ============== Getting the value ==============
+
+      // ============== Checking if all fields are valid ==============
       if (
         clientName &&
         email &&
@@ -115,17 +116,51 @@ const SignUp = () => {
         country &&
         zip
       ) {
-        setSuccessMsg(
-          `Hello dear ${clientName}, Welcome you to OREBI Admin panel. We received your Sign up request. We are processing to validate your access. Till then stay connected and additional assistance will be sent to you by your mail at ${email}`
-        );
-        setClientName("");
-        setEmail("");
-        setPhone("");
-        setPassword("");
-        setAddress("");
-        setCity("");
-        setCountry("");
-        setZip("");
+        // ============== Sending the data to the server ==============
+        const userData = {
+          nombre_completo: clientName,
+          correo_electronico: email,
+          contrasena: password,
+          numero_telefono: phone,
+          direccion: address,
+          ciudad: city,
+          pais: country,
+          codigo_postal: zip,
+        };
+
+        fetch("http://localhost:3000/usuarios/crearusuario", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          // Assuming the response contains a success message or some other indication of success
+          if (data.success) {
+            setSuccessMsg(
+              `Hello dear ${clientName}, Welcome to OREBI Admin panel. We received your sign-up request. We are processing your access validation. Stay connected, and further assistance will be sent to you at ${email}.`
+            );
+            // Clear the form
+            setClientName("");
+            setEmail("");
+            setPhone("");
+            setPassword("");
+            setAddress("");
+            setCity("");
+            setCountry("");
+            setZip("");
+          } else {
+            // Handle the error response from the backend
+            setErrClientName("Error occurred while signing up. Please try again.");
+          }
+        })
+        .catch((error) => {
+          // Handle any errors that occurred during the fetch
+          console.error("Error:", error);
+          setErrClientName("Error occurred while signing up. Please try again.");
+        });
       }
     }
   };
