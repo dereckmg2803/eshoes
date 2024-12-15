@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { logoLight } from "../../assets/images";
 const SignIn = () => {
+  const navigate = useNavigate();
   // ============= Initial State Start here =============
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,9 +50,14 @@ const SignIn = () => {
             // Verificar si el usuario existe y la contraseña es correcta
             if (user) {
               if (user.contrasena === password) {
+                
                 setSuccessMsg(`Ingresaste de sesión con éxito`);
                 setEmail("");
                 setPassword("");
+
+                navigate("/");
+
+
               } else {
                 setErrPassword("Incorrect password");
               }
