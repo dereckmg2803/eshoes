@@ -31,4 +31,45 @@ nav .active li {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+  /* Grid adaptable para los productos */
+  .productGrid {
+    @apply grid grid-cols-1 gap-4; /* 1 columna por defecto */
+  }
+
+  @screen sm {
+    .productGrid {
+      @apply grid-cols-2; /* 2 columnas en pantallas pequeñas */
+    }
+  }
+
+  @screen md {
+    .productGrid {
+      @apply grid-cols-3; /* 3 columnas en pantallas medianas */
+    }
+  }
+
+  @screen lg {
+    .productGrid {
+      @apply grid-cols-4; /* 4 columnas en pantallas grandes */
+    }
+  }
+
+  /* Estilo para imágenes */
+  .productImage {
+    @apply w-full h-48 object-cover rounded-lg;
+  }
+
+  /* Estilo para botones */
+  .productButton {
+    @apply bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition;
+  }
+
+  @screen sm {
+    .productButton {
+      @apply text-sm px-3 py-1; /* Botón más compacto en móviles */
+    }
+  }
+
+
 /* ============= NavLink active End here ================ */

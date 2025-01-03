@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import Heading from "../Products/Heading";
 import Product from "../Products/Product";
@@ -12,6 +12,70 @@ import SampleNextArrow from "./SampleNextArrow";
 import SamplePrevArrow from "./SamplePrevArrow";
 
 const NewArrivals = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detectar si el usuario está en una pantalla móvil
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Pantallas de 768px o menos serán consideradas móviles
+    };
+
+    handleResize(); // Comprobar inicialmente
+    window.addEventListener("resize", handleResize); // Añadir listener para cambios de tamaño
+
+    return () => {
+      window.removeEventListener("resize", handleResize); // Limpiar el listener
+    };
+  }, []);
+
+  const products = [
+    {
+      _id: "100001",
+      img: newArrOne,
+      productName: "Round Table Clock",
+      price: "44.00",
+      color: "Black",
+      badge: true,
+      des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
+    },
+    {
+      _id: "100002",
+      img: newArrTwo,
+      productName: "Smart Watch",
+      price: "250.00",
+      color: "Black",
+      badge: true,
+      des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
+    },
+    {
+      _id: "100003",
+      img: newArrThree,
+      productName: "Cloth Basket",
+      price: "80.00",
+      color: "Mixed",
+      badge: true,
+      des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
+    },
+    {
+      _id: "100004",
+      img: newArrFour,
+      productName: "Funny Toys for Babies",
+      price: "60.00",
+      color: "Mixed",
+      badge: false,
+      des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
+    },
+    {
+      _id: "100005",
+      img: newArrTwo,
+      productName: "Funny Toys for Babies",
+      price: "60.00",
+      color: "Mixed",
+      badge: false,
+      des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
+    },
+  ];
+
   const settings = {
     infinite: true,
     speed: 500,
@@ -46,66 +110,27 @@ const NewArrivals = () => {
       },
     ],
   };
+
   return (
     <div className="w-full pb-16">
       <Heading heading="New Arrivals" />
-      <Slider {...settings}>
-        <div className="px-2">
-          <Product
-            _id="100001"
-            img={newArrOne}
-            productName="Round Table Clock"
-            price="44.00"
-            color="Black"
-            badge={true}
-            des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
-          />
+      {isMobile ? (
+        // Diseño en grid para pantallas móviles
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {products.map((product) => (
+            <Product key={product._id} {...product} />
+          ))}
         </div>
-        <div className="px-2">
-          <Product
-            _id="100002"
-            img={newArrTwo}
-            productName="Smart Watch"
-            price="250.00"
-            color="Black"
-            badge={true}
-            des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
-          />
-        </div>
-        <div className="px-2">
-          <Product
-            _id="100003"
-            img={newArrThree}
-            productName="cloth Basket"
-            price="80.00"
-            color="Mixed"
-            badge={true}
-            des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
-          />
-        </div>
-        <div className="px-2">
-          <Product
-            _id="100004"
-            img={newArrFour}
-            productName="Funny toys for babies"
-            price="60.00"
-            color="Mixed"
-            badge={false}
-            des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
-          />
-        </div>
-        <div className="px-2">
-          <Product
-            _id="100005"
-            img={newArrTwo}
-            productName="Funny toys for babies"
-            price="60.00"
-            color="Mixed"
-            badge={false}
-            des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
-          />
-        </div>
-      </Slider>
+      ) : (
+        // Carrusel para pantallas más grandes
+        <Slider {...settings}>
+          {products.map((product) => (
+            <div key={product._id} className="px-2">
+              <Product {...product} />
+            </div>
+          ))}
+        </Slider>
+      )}
     </div>
   );
 };
