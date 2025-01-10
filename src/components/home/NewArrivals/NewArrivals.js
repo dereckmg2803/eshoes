@@ -35,7 +35,7 @@ const NewArrivals = () => {
       productName: "Round Table Clock",
       price: "44.00",
       color: "Black",
-      badge: true,
+      badge: "Nuevo",
       des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     },
     {
@@ -44,7 +44,7 @@ const NewArrivals = () => {
       productName: "Smart Watch",
       price: "250.00",
       color: "Black",
-      badge: true,
+      badge: "Nuevo",
       des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     },
     {

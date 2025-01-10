@@ -47,7 +47,7 @@ export const SplOfferData = [
   {
     _id: "201",
     img: spfOne,
-    productName: "Cap for Boys",
+    productName: "Ca for Boys",
     price: "35.00",
     color: "Blank and White",
     badge: true,
@@ -74,11 +74,11 @@ export const SplOfferData = [
   {
     _id: "204",
     img: spfFour,
-    productName: "Sun glasses",
-    price: "220.00",
-    color: "Black",
+    productName: "New Balance 530",
+    price: "140.00",
+    color: "White",
     badge: true,
-    des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
+    des: "Los New Balance 530 son el equilibrio perfecto entre estilo retro y tecnología moderna, diseñados para quienes buscan comodidad y moda en cada paso. Inspirados en los modelos clásicos de running de los años 90, estos tenis destacan por su silueta atemporal y detalles icónicos que complementan cualquier look, desde casual hasta deportivo.",
   },
 ];
 // =================== Special Offer data End here ==============
@@ -116,11 +116,11 @@ export const paginationItems = [
   {
     _id: 1004,
     img: spfFour,
-    productName: "Sun glasses",
-    price: "220.00",
-    color: "Black",
+    productName: "New Balance 539",
+    price: "140.000",
+    color: "White",
     badge: true,
-    des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
+    des: "Los New Balance 530 son el equilibrio perfecto entre estilo retro y tecnología moderna, diseñados para quienes buscan comodidad y moda en cada paso. Inspirados en los modelos clásicos de running de los años 90, estos tenis destacan por su silueta atemporal y detalles icónicos que complementan cualquier look, desde casual hasta deportivo.",
   },
   {
     _id: 1005,
@@ -279,11 +279,11 @@ export const paginationItems = [
   {
     _id: 1022,
     img: spfFour,
-    productName: "Sun glasses",
-    price: "220.00",
-    color: "Black",
+    productName: "New Balance",
+    price: "140.000",
+    color: "White",
     badge: true,
-    des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
+    des: "Los New Balance 530 son el equilibrio perfecto entre estilo retro y tecnología moderna, diseñados para quienes buscan comodidad y moda en cada paso. Inspirados en los modelos clásicos de running de los años 90, estos tenis destacan por su silueta atemporal y detalles icónicos que complementan cualquier look, desde casual hasta deportivo.",
   },
   {
     _id: 1023,
@@ -324,11 +324,11 @@ export const paginationItems = [
   {
     _id: 1027,
     img: spfFour,
-    productName: "Sun glasses",
-    price: "220.00",
-    color: "Black",
+    productName: "New Balance 530",
+    price: "140.000",
+    color: "Blanco",
     badge: true,
-    des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
+    des: "Los New Balance 530 son el equilibrio perfecto entre estilo retro y tecnología moderna, diseñados para quienes buscan comodidad y moda en cada paso. Inspirados en los modelos clásicos de running de los años 90, estos tenis destacan por su silueta atemporal y detalles icónicos que complementan cualquier look, desde casual hasta deportivo.",
   },
   {
     _id: 1028,
@@ -477,11 +477,11 @@ export const paginationItems = [
   {
     _id: 1044,
     img: spfFour,
-    productName: "Sun glasses",
-    price: "220.00",
-    color: "Black",
+    productName: "New Balance",
+    price: "140.00",
+    color: "White",
     badge: true,
-    des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
+    des: "Los New Balance 530 son el equilibrio perfecto entre estilo retro y tecnología moderna, diseñados para quienes buscan comodidad y moda en cada paso. Inspirados en los modelos clásicos de running de los años 90, estos tenis destacan por su silueta atemporal y detalles icónicos que complementan cualquier look, desde casual hasta deportivo.",
   },
   {
     _id: 1045,

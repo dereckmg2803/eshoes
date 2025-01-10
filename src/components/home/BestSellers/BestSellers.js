@@ -33,7 +33,7 @@ const BestSellers = () => {
       productName: "Flower Base",
       price: "35.00",
       color: "Blank and White",
-      badge: true,
+      badge: false,
       des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     },
     {
@@ -51,7 +51,7 @@ const BestSellers = () => {
       productName: "Household materials",
       price: "25.00",
       color: "Mixed",
-      badge: true,
+      badge: false,
       des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     },
     {
