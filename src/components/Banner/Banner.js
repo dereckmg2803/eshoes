@@ -4,7 +4,6 @@ import Slider from "react-slick";
 import {
   bannerImgOne,
   bannerImgTwo,
-  bannerImgThree,
 } from "../../assets/images";
 import Image from "../designLayouts/Image";
 
@@ -112,11 +111,7 @@ const Banner = () => {
             <Image imgSrc={bannerImgTwo} />
           </div>
         </Link>
-        <Link to="/offer">
-          <div>
-            <Image imgSrc={bannerImgThree} />
-          </div>
-        </Link>
+        
       </Slider>
     </div>
   );
