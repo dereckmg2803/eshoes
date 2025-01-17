@@ -21,27 +21,30 @@ const ProductDetails = () => {
 
   // Verificar si productInfo está disponible antes de renderizar
   if (!productInfo.productName) {
-    return <div>Cargando...</div>; // Renderiza un cargando si no hay producto
+    return <div>Cargando...</div>; // Renderiza un mensaje mientras carga
   }
 
   return (
-    <div className="w-full grid grid-cols-1 gap-4 h-full -mt-5 xl:-mt-8 pb-10 bg-gray-100 p-4">
-      {/* Sección de imagen del producto */}
-      <div className="order-1 md:order-2 h-full xl:col-span-2">
-        <img
-          className="w-full h-full object-cover"
-          src={productInfo.img}
-          alt={productInfo.productName}
-        />
-      </div>
+    <div className="w-full max-w-6xl mx-auto flex flex-col gap-8 bg-gray-100 p-4 pb-10">
+      {/* Sección de imagen e información del producto */}
+      <div className="flex flex-col md:flex-row gap-8 items-start">
+        {/* Imagen del producto */}
+        <div className="flex-1 max-w-lg">
+          <img
+            className="w-full max-w-md h-auto rounded-md object-contain mx-auto"
+            src={productInfo.img}
+            alt={productInfo.productName}
+          />
+        </div>
 
-      {/* Información del producto */}
-      <div className="order-2 md:order-3 h-full w-full md:col-span-2 xl:col-span-3 xl:p-14 flex flex-col gap-6 justify-center">
-        <ProductInfo productInfo={productInfo} />
+        {/* Información del producto */}
+        <div className="flex-1 max-w-lg">
+          <ProductInfo productInfo={productInfo} />
+        </div>
       </div>
 
       {/* Productos similares */}
-      <div className="order-3 md:order-1 h-full">
+      <div className="w-full">
         <ProductsOnSale />
       </div>
     </div>

@@ -53,7 +53,7 @@ const NewArrivals = () => {
       productName: "Cloth Basket",
       price: "80.00",
       color: "Mixed",
-      badge: true,
+      badge: "Nuevo",
       des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
     },
     {
@@ -113,7 +113,7 @@ const NewArrivals = () => {
 
   return (
     <div className="w-full pb-16">
-      <Heading heading="New Arrivals" />
+      <Heading heading="Mas Vendidos" />
       {isMobile ? (
         // Diseño en grid para pantallas móviles
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
