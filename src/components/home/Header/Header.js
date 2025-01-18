@@ -9,7 +9,7 @@ import { paginationItems } from "../../../constants";
 import { logo } from "../../../assets/images";
 import Image from "../../designLayouts/Image";
 import Flex from "../../designLayouts/Flex";
-import HeaderBottom from "./HeaderBottom";
+
 
 
 const Header = () => {
@@ -23,6 +23,12 @@ const Header = () => {
   
   const ref = useRef(null);
   const products = useSelector((state) => state.orebiReducer.products);
+  
+  const handleAnnouncementClick = () => {
+    window.open("https://shhhhtenisco.my.canva.site", "_blank");
+  };
+
+
 
 
   const handleSearch = (e) => {
@@ -45,11 +51,24 @@ const Header = () => {
     window.addEventListener("resize", ResponsiveMenu);
     return () => window.removeEventListener("resize", ResponsiveMenu);
   }, []);
+  
 
   return (
     
-    <div className="w-full h-20 bg-white sticky top-0 z-50 border-b-[1px] border-b-gray-200">
-      <nav className="h-full px-4 max-w-container mx-auto relative">
+    
+    <div className="w-full h-25 bg-white sticky top-0 z-50 border-b-[1px] border-b-gray-200">
+      
+      <div className="w-full h-25 bg-white sticky top-0 z-50 border-b-[1px] border-b-gray-200">
+      {/* Black announcement bar como enlace */}
+      <div
+        className="w-full bg-black text-white py-2 text-center cursor-pointer"
+        onClick={handleAnnouncementClick} // Activar el enlace al hacer clic
+      >
+        <span>¡Aprovecha hasta 40% OFF en Outlet!</span>
+      </div>
+    </div>
+
+      <nav className="h-24 px-4 max-w-container mx-auto relative">
         {/* Vista para escritorio */}
         
         <Flex className="hidden md:flex items-center justify-center h-full">
@@ -99,7 +118,7 @@ const Header = () => {
                         type="text"
                         onChange={handleSearch}
                         value={searchQuery}
-                        placeholder=""
+                        placeholder="Buscar"
                       />
                       <FaSearch className="w-5 h-5" />
                       {searchQuery && (
