@@ -26,12 +26,19 @@ const SpecialOffers = () => {
     };
   }, []);
 
+  const calculateDiscountedPrice = (price) => {
+    const numericPrice = parseFloat(price.replace(/\./g, '').replace(',', '.'));
+    const discountedPrice = numericPrice * 0.6;
+    return discountedPrice.toLocaleString('de-DE', { minimumFractionDigits: 0 });
+  };
+
   const products = [
     {
       _id: "1101",
       img: spfOne,
       productName: "Cap for Boys",
-      price: "35.00",
+      price: "3500",
+      discountedPrice: calculateDiscountedPrice("3500"),
       color: "Blank and White",
       badge: "Nuevo",
       des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -40,7 +47,8 @@ const SpecialOffers = () => {
       _id: "1102",
       img: spfTwo,
       productName: "Adidas Samba",
-      price: "120.000",
+      price: "120000",
+      discountedPrice: calculateDiscountedPrice("120000"),
       color: "Negro",
       badge: "Oferta",
       des: "Los Adidas Samba son un verdadero ícono de estilo y funcionalidad, diseñados originalmente como calzado de fútbol sala y convertidos en un clásico atemporal de la moda urbana. Desde su lanzamiento en los años 50, los Samba han sido un favorito entre los amantes de la comodidad y el diseño retro.",
@@ -49,7 +57,8 @@ const SpecialOffers = () => {
       _id: "1103",
       img: spfThree,
       productName: "Headphones",
-      price: "25.00",
+      price: "2500",
+      discountedPrice: calculateDiscountedPrice("2500"),
       color: "Mixed",
       badge: "Nuevo",
       des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -58,7 +67,8 @@ const SpecialOffers = () => {
       _id: "1104",
       img: spfFour,
       productName: "New Balance 530",
-      price: "140.000",
+      price: "140000",
+      discountedPrice: calculateDiscountedPrice("140000"),
       color: "White",
       badge: "Nuevo",
       des: "Los New Balance 530 son el equilibrio perfecto entre estilo retro y tecnología moderna, diseñados para quienes buscan comodidad y moda en cada paso. estos tenis destacan por su silueta atemporal y detalles icónicos que complementan cualquier look, desde casual hasta deportivo.",

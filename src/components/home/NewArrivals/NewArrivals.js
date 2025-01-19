@@ -28,12 +28,20 @@ const NewArrivals = () => {
     };
   }, []);
 
+ 
+  const calculateDiscountedPrice = (price) => {
+    const numericPrice = parseFloat(price.replace(/\./g, '').replace(',', '.'));
+    const discountedPrice = numericPrice * 0.6;
+    return discountedPrice.toLocaleString('de-DE', { minimumFractionDigits: 0 });
+  };
+
   const products = [
     {
       _id: "100001",
       img: newArrOne,
       productName: "Round Table Clock",
-      price: "44.00",
+      price: "350000",
+      discountedPrice: calculateDiscountedPrice("3500.00"),
       color: "Black",
       badge: "Nuevo",
       des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -42,7 +50,8 @@ const NewArrivals = () => {
       _id: "100002",
       img: newArrTwo,
       productName: "Smart Watch",
-      price: "250.00",
+      price: "3500",
+      discountedPrice: calculateDiscountedPrice("3500"),
       color: "Black",
       badge: "Nuevo",
       des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -51,7 +60,8 @@ const NewArrivals = () => {
       _id: "100003",
       img: newArrThree,
       productName: "Cloth Basket",
-      price: "80.00",
+      price: "3500",
+      discountedPrice: calculateDiscountedPrice("3500"),
       color: "Mixed",
       badge: "Nuevo",
       des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -60,7 +70,8 @@ const NewArrivals = () => {
       _id: "100004",
       img: newArrFour,
       productName: "Funny Toys for Babies",
-      price: "60.00",
+      price: "35000",
+      discountedPrice: calculateDiscountedPrice("35000"),
       color: "Mixed",
       badge: false,
       des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -69,7 +80,8 @@ const NewArrivals = () => {
       _id: "100005",
       img: newArrTwo,
       productName: "Funny Toys for Babies",
-      price: "60.00",
+      price: "250000",
+      discountedPrice: calculateDiscountedPrice("250000"),
       color: "Mixed",
       badge: false,
       des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -113,7 +125,7 @@ const NewArrivals = () => {
 
   return (
     <div className="w-full pb-16">
-      <Heading heading="Mas Vendidos" />
+      <Heading heading="Más Vendidos" />
       {isMobile ? (
         // Diseño en grid para pantallas móviles
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

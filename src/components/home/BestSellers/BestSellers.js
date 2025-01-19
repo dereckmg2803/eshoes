@@ -26,12 +26,17 @@ const BestSellers = () => {
     };
   }, []);
 
+  const calculateDiscountedPrice = (price) => {
+    return Math.round(price * 0.6).toLocaleString("es-CO"); // Aplica el 40% de descuento y formatea
+  };
+
   const products = [
     {
       _id: "1011",
       img: bestSellerOne,
       productName: "Flower Base",
-      price: "35.00",
+      price: 35000.0,
+      discountedPrice: calculateDiscountedPrice(35000.0),
       color: "Blank and White",
       badge: false,
       des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -40,7 +45,8 @@ const BestSellers = () => {
       _id: "1012",
       img: bestSellerTwo,
       productName: "New Backpack",
-      price: "180.00",
+      price: 18000.0,
+      discountedPrice: calculateDiscountedPrice(18000.0),
       color: "Gray",
       badge: false,
       des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -49,7 +55,8 @@ const BestSellers = () => {
       _id: "1013",
       img: bestSellerThree,
       productName: "Household materials",
-      price: "25.00",
+      price: 2500.0,
+      discountedPrice: calculateDiscountedPrice(2500.0),
       color: "Mixed",
       badge: false,
       des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
@@ -58,7 +65,8 @@ const BestSellers = () => {
       _id: "1014",
       img: bestSellerFour,
       productName: "Travel Bag",
-      price: "220.00",
+      price: 22000.0,
+      discountedPrice: calculateDiscountedPrice(22000.0),
       color: "Black",
       badge: false,
       des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
