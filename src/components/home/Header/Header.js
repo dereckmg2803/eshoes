@@ -14,6 +14,8 @@ import Flex from "../../designLayouts/Flex";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
+
   const [show, setShow] = useState(false);
   const [showUser, setShowUser] = useState(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
@@ -21,12 +23,14 @@ const Header = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const navigate = useNavigate();
   
+  
   const ref = useRef(null);
   const products = useSelector((state) => state.orebiReducer.products);
   
   const handleAnnouncementClick = () => {
     window.open("https://shhhhtenisco.my.canva.site", "_blank");
   };
+  
 
 
 
@@ -34,6 +38,17 @@ const Header = () => {
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const filtered = paginationItems.filter((item) =>
@@ -64,7 +79,7 @@ const Header = () => {
         className="w-full bg-black text-white py-2 text-center cursor-pointer"
         onClick={handleAnnouncementClick} // Activar el enlace al hacer clic
       >
-        <span>¡Aprovecha hasta 40% OFF en Outlet!</span>
+        <span>¡Descuento de 40% en toda la tienda!</span>
       </div>
     </div>
 
@@ -254,7 +269,12 @@ const Header = () => {
 
           {/* Logo */}
           <Link to="/" className="flex justify-center items-center">
-            <Image className="w-20 object-cover mx-auto" imgSrc={logo} />
+            <Image
+              className={`mx-auto object-cover transition-transform duration-300 ${
+                isScrolled ? "w-24 scale-110" : "w-20 scale-100"
+              }`}
+              imgSrc={logo}
+            />
           </Link>
           
 
