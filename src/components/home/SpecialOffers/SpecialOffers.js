@@ -57,7 +57,7 @@ const SpecialOffers = () => {
       discountedPrice: calculateDiscountedPrice("190000"),
       color: "Negro",
       badge: "Oferta",
-      des: "Un clásico atemporal de la moda urbana. Desde su lanzamiento en los años 50, los Samba han sido un favorito entre los amantes de la comodidad y el diseño retro.",
+      des: "Favorito entre los amantes de la comodidad y el diseño retro.",
     },
     {
       _id: "1103",
