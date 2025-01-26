@@ -8,6 +8,7 @@ const ProductInfo = ({ productInfo }) => {
 
   const handleAddToCart = () => {
     if (!selectedSize) {
+      // Mejor opción: usar feedback visual
       alert("Por favor selecciona una talla antes de agregar al carrito.");
       return;
     }
@@ -16,7 +17,7 @@ const ProductInfo = ({ productInfo }) => {
         _id: productInfo.id,
         name: productInfo.productName,
         quantity: 1,
-        size: selectedSize, // Agrega la talla seleccionada
+        size: selectedSize,
         image: productInfo.img,
         badge: productInfo.badge,
         price: productInfo.price,
@@ -28,11 +29,12 @@ const ProductInfo = ({ productInfo }) => {
 
   const handleWhatsAppPurchase = () => {
     if (!selectedSize) {
+      // Mejor opción: usar feedback visual
       alert("Por favor selecciona una talla antes de continuar.");
       return;
     }
-    const message = `Hola, estoy interesado en comprar el producto "${productInfo.productName}" en talla "${selectedSize}". ¿Está disponible?`;
-    const phoneNumber = "573158591463"; // Cambia este número por el tuyo
+    const message = `Hola, estoy interesado en comprar el producto \"${productInfo.productName}\" en talla \"${selectedSize}\". ¿Está disponible?`;
+    const phoneNumber = "573158591463";
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
   };
@@ -48,12 +50,11 @@ const ProductInfo = ({ productInfo }) => {
         <p className="line-through text-gray-500">{formatPrice(productInfo.price)}</p>
         <p className="text-red-600">{formatPrice(Math.round(productInfo.price * 0.6))}</p>
       </div>
-      
       <p className="text-sm sm:text-base text-gray-600">{productInfo.des}</p>
       <p className="font-medium text-sm sm:text-lg">
         <span className="font-normal">Color:</span> {productInfo.color}
       </p>
-      
+
       {/* Selector de talla */}
       <div>
         <label htmlFor="size" className="block font-medium">
@@ -73,24 +74,21 @@ const ProductInfo = ({ productInfo }) => {
           ))}
         </select>
       </div>
-      
+
       <button
         onClick={handleAddToCart}
-        className="py-2 px-10 bg-primeColor text-white font-semibold uppercase hover:bg-primeDark duration-300"
+        className={`py-2 px-10 bg-primeColor text-white font-semibold uppercase hover:bg-primeDark duration-300 ${!selectedSize && "opacity-50 cursor-not-allowed"}`}
+        disabled={!selectedSize}  // Deshabilitar botón si no hay talla seleccionada
       >
         Agregar al carrito
       </button>
-
       <button
         onClick={handleWhatsAppPurchase}
-        className="py-2 px-10 bg-green-500 text-white font-semibold uppercase hover:bg-green-600 duration-300 mt-2"
+        className={`py-2 px-10 bg-green-500 text-white font-semibold uppercase hover:bg-green-600 duration-300 mt-2 ${!selectedSize && "opacity-50 cursor-not-allowed"}`}
+        disabled={!selectedSize}  // Deshabilitar botón si no hay talla seleccionada
       >
         Comprar por WhatsApp
       </button>
-
-      <p className="font-normal text-xs sm:text-sm">
-        <span className="text-sm sm:text-base font-medium"> Categorías:</span> Spring collection, Streetwear, Women Tags: featured SKU: N/A
-      </p>
     </div>
   );
 };

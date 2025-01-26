@@ -47,7 +47,7 @@ export const SplOfferData = [
   {
     _id: "201",
     img: spfOne,
-    productName: "Ca for Boys",
+    productName: "Cap for Boys",
     price: "35.00",
     color: "Blank and White",
     badge: true,

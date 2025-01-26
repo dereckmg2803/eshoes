@@ -14,7 +14,7 @@ const Product = (props) => {
   const handleProductDetails = () => {
     navigate(`/product/${rootId}`, {
       state: {
-        item: props, // Pasa el producto completo
+        item: props, // Pasar el producto completo, incluyendo moreImages
       },
     });
   };

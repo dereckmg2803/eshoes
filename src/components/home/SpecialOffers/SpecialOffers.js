@@ -46,16 +46,28 @@ const SpecialOffers = () => {
     {
       _id: "1102",
       img: spfTwo,
+      moreImages: [
+            
+        spfTwo,    // Imagen adicional 2
+        spfFour,   // Imagen adicional 3
+      ],
+    
       productName: "Adidas Samba",
       price: "190000",
       discountedPrice: calculateDiscountedPrice("190000"),
       color: "Negro",
       badge: "Oferta",
-      des: "Los Adidas Samba son un verdadero ícono de estilo y funcionalidad, diseñados originalmente como calzado de fútbol sala y convertidos en un clásico atemporal de la moda urbana. Desde su lanzamiento en los años 50, los Samba han sido un favorito entre los amantes de la comodidad y el diseño retro.",
+      des: "Un clásico atemporal de la moda urbana. Desde su lanzamiento en los años 50, los Samba han sido un favorito entre los amantes de la comodidad y el diseño retro.",
     },
     {
       _id: "1103",
       img: spfThree,
+      moreImages: [
+            
+        spfThree,    // Imagen adicional 2
+        spfFour,   // Imagen adicional 3
+      ],
+    
       productName: "Headphones",
       price: "2500",
       discountedPrice: calculateDiscountedPrice("2500"),
