@@ -58,7 +58,7 @@ const ProductDetails = () => {
 
               {/* Indicadores de imagen actual */}
               {productInfo.moreImages && productInfo.moreImages.length > 0 && (
-                <div className="absolute top-4 right-4 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full">
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-white px-2 py-0 rounded-full">
                   {currentImageIndex + 1} / {productInfo.moreImages.length}
                 </div>
               )}

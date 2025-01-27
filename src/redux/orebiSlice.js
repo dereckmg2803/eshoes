@@ -10,14 +10,19 @@ export const orebiSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
+      console.log("Payload recibido:", action.payload);
+      console.log("Estado actual del carrito:", state.products);
+    
       const item = state.products.find(
-        (item) => item._id === action.payload._id
+        (item) => item._id === action.payload._id && item.size === action.payload.size
       );
       if (item) {
         item.quantity += action.payload.quantity;
       } else {
-        state.products.push(action.payload);
+        state.products.push({ ...action.payload, quantity: action.payload.quantity || 1 });
       }
+    
+      console.log("Estado actualizado del carrito:", state.products);
     },
     increaseQuantity: (state, action) => {
       const item = state.products.find(
@@ -55,4 +60,5 @@ export const {
   deleteItem,
   resetCart,
 } = orebiSlice.actions;
+
 export default orebiSlice.reducer;

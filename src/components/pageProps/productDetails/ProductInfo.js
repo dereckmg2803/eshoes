@@ -8,7 +8,6 @@ const ProductInfo = ({ productInfo }) => {
 
   const handleAddToCart = () => {
     if (!selectedSize) {
-      // Mejor opción: usar feedback visual
       alert("Por favor selecciona una talla antes de agregar al carrito.");
       return;
     }
@@ -29,7 +28,6 @@ const ProductInfo = ({ productInfo }) => {
 
   const handleWhatsAppPurchase = () => {
     if (!selectedSize) {
-      // Mejor opción: usar feedback visual
       alert("Por favor selecciona una talla antes de continuar.");
       return;
     }
@@ -75,17 +73,24 @@ const ProductInfo = ({ productInfo }) => {
         </select>
       </div>
 
+      {/* Botón Agregar al carrito */}
       <button
         onClick={handleAddToCart}
-        className={`py-2 px-10 bg-primeColor text-white font-semibold uppercase hover:bg-primeDark duration-300 ${!selectedSize && "opacity-50 cursor-not-allowed"}`}
-        disabled={!selectedSize}  // Deshabilitar botón si no hay talla seleccionada
+        className={`py-2 px-6 border border-gray-800 text-gray-800 font-semibold uppercase bg-white hover:bg-gray-100 duration-300 ${
+          !selectedSize && "opacity-50 cursor-not-allowed"
+        }`}
+        disabled={!selectedSize}
       >
         Agregar al carrito
       </button>
+
+      {/* Botón Comprar por WhatsApp */}
       <button
         onClick={handleWhatsAppPurchase}
-        className={`py-2 px-10 bg-green-500 text-white font-semibold uppercase hover:bg-green-600 duration-300 mt-2 ${!selectedSize && "opacity-50 cursor-not-allowed"}`}
-        disabled={!selectedSize}  // Deshabilitar botón si no hay talla seleccionada
+        className={`py-2 px-6 bg-gray-900 text-white font-semibold uppercase hover:bg-gray-800 duration-300 ${
+          !selectedSize && "opacity-50 cursor-not-allowed"
+        }`}
+        disabled={!selectedSize}
       >
         Comprar por WhatsApp
       </button>
