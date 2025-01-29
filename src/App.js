@@ -24,6 +24,10 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
 import TerminosServicio from "./pages/terminosServicio/TerminosServicio"; // Ajusta la ruta según tu estructura de archivos
 import PoliticaReembolso from "./pages/PoliticaReembolso/PoliticaReembolso";
+import Hombre from "./pages/colecciones/Hombre";
+import Mujer from "./pages/colecciones/Mujer";
+import Ninos from "./pages/colecciones/Ninos";
+import Originales from "./pages/colecciones/Originales";
 
 
 
@@ -84,6 +88,18 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
+      <Route path="/hombre" element={<Layout />}>
+  <Route index element={<Hombre />} />
+</Route>
+<Route path="/mujer" element={<Layout />}>
+  <Route index element={<Mujer />} />
+</Route>
+<Route path="/ninos" element={<Layout />}>
+  <Route index element={<Ninos />} />
+</Route>
+<Route path="/originales" element={<Layout />}>
+  <Route index element={<Originales />} />
+</Route>
     </Route>
   )
 );

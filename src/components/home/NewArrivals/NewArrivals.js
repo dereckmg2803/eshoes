@@ -2,12 +2,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import Heading from "../Products/Heading";
 import Product from "../Products/Product";
-import {
-  newArrOne,
-  newArrTwo,
-  newArrThree,
-  newArrFour,
-} from "../../../assets/images/index";
+import { getNewArrivals } from "../../../data/products";
 
 const NewArrivals = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -31,58 +26,7 @@ const NewArrivals = () => {
     return discountedPrice.toLocaleString('de-DE', { minimumFractionDigits: 0 });
   };
 
-  const products = [
-    {
-      _id: "100001",
-      img: newArrOne,
-      productName: "Round Table Clock",
-      price: "350000",
-      discountedPrice: calculateDiscountedPrice("3500.00"),
-      color: "Black",
-      badge: "Nuevo",
-      des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    },
-    {
-      _id: "100002",
-      img: newArrTwo,
-      productName: "Smart Watch",
-      price: "3500",
-      discountedPrice: calculateDiscountedPrice("3500"),
-      color: "Black",
-      badge: "Nuevo",
-      des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    },
-    {
-      _id: "100003",
-      img: newArrThree,
-      productName: "Cloth Basket",
-      price: "3500",
-      discountedPrice: calculateDiscountedPrice("3500"),
-      color: "Mixed",
-      badge: "Nuevo",
-      des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    },
-    {
-      _id: "100004",
-      img: newArrFour,
-      productName: "Funny Toys for Babies",
-      price: "35000",
-      discountedPrice: calculateDiscountedPrice("35000"),
-      color: "Mixed",
-      badge: false,
-      des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    },
-    {
-      _id: "100005",
-      img: newArrTwo,
-      productName: "Funny Toys for Babies",
-      price: "250000",
-      discountedPrice: calculateDiscountedPrice("250000"),
-      color: "Mixed",
-      badge: false,
-      des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    },
-  ];
+  const products = getNewArrivals();
 
   const settings = {
     infinite: true,
@@ -90,7 +34,7 @@ const NewArrivals = () => {
     slidesToShow: 4,
     slidesToScroll: 2,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
     arrows: false,
     responsive: [
       {
@@ -99,6 +43,7 @@ const NewArrivals = () => {
           slidesToShow: 3,
           slidesToScroll: 2,
           infinite: true,
+          autoplay: true,
         },
       },
       {
@@ -108,7 +53,6 @@ const NewArrivals = () => {
           slidesToScroll: 2,
           infinite: true,
           autoplay: true,
-          autoplaySpeed: 2000,
         },
       },
       {
@@ -118,22 +62,23 @@ const NewArrivals = () => {
           slidesToScroll: 2,
           infinite: true,
           autoplay: true,
-          autoplaySpeed: 2000,
         },
       },
     ],
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full pb-16">
       <Heading heading="" />
-      <Slider {...settings}>
-        {products.map((product) => (
-          <div key={product._id} className="px-2">
-            <Product {...product} />
-          </div>
-        ))}
-      </Slider>
+      <div className="w-full">
+        <Slider {...settings} className="w-full">
+          {products.map((product) => (
+            <div key={product.id} className="px-2">
+              <Product {...product} />
+            </div>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 };

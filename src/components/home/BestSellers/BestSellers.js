@@ -2,12 +2,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import Heading from "../Products/Heading";
 import Product from "../Products/Product";
-import {
-  bestSellerOne,
-  bestSellerTwo,
-  bestSellerThree,
-  bestSellerFour,
-} from "../../../assets/images/index";
+import { getBestSellers } from "../../../data/products";
 
 const BestSellers = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -30,48 +25,7 @@ const BestSellers = () => {
     return Math.round(price * 0.6).toLocaleString("es-CO"); // Aplica el 40% de descuento y formatea
   };
 
-  const products = [
-    {
-      _id: "1011",
-      img: bestSellerOne,
-      productName: "Flower Base",
-      price: 35000.0,
-      discountedPrice: calculateDiscountedPrice(35000.0),
-      color: "Blank and White",
-      badge: false,
-      des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    },
-    {
-      _id: "1012",
-      img: bestSellerTwo,
-      productName: "New Backpack",
-      price: 18000.0,
-      discountedPrice: calculateDiscountedPrice(18000.0),
-      color: "Gray",
-      badge: false,
-      des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    },
-    {
-      _id: "1013",
-      img: bestSellerThree,
-      productName: "Household materials",
-      price: 2500.0,
-      discountedPrice: calculateDiscountedPrice(2500.0),
-      color: "Mixed",
-      badge: false,
-      des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    },
-    {
-      _id: "1014",
-      img: bestSellerFour,
-      productName: "Travel Bag",
-      price: 22000.0,
-      discountedPrice: calculateDiscountedPrice(22000.0),
-      color: "Black",
-      badge: false,
-      des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
-    },
-  ];
+  const products = getBestSellers();
 
   const settings = {
     infinite: true,

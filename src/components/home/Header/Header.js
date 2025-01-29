@@ -9,6 +9,7 @@ import { paginationItems } from "../../../constants";
 import { logo } from "../../../assets/images";
 import Image from "../../designLayouts/Image";
 import Flex from "../../designLayouts/Flex";
+import { products } from "../../../data/products";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(true);
@@ -18,21 +19,18 @@ const Header = () => {
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 950); // Estado para manejar el tamaño de la pantalla
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 950);
   const navigate = useNavigate();
   const ref = useRef(null);
-  const products = useSelector((state) => state.orebiReducer.products);
+  const cartProducts = useSelector((state) => state.orebiReducer.products);
 
-  // Efecto para detectar cambios en el tamaño de la ventana
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 950);
-      setShowMenu(window.innerWidth >= 950); // Ajustar el menú para dispositivos móviles
+      setShowMenu(window.innerWidth >= 950);
     };
 
     window.addEventListener("resize", handleResize);
-
-    // Limpiar el event listener al desmontar el componente
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -40,6 +38,22 @@ const Header = () => {
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
+  };
+
+  useEffect(() => {
+    const filtered = products.filter((item) =>
+      item.productName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.category.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  }, [searchQuery]);
+
+  const handleProductClick = (item) => {
+    const rootId = String(item.productName).toLowerCase().split(" ").join("");
+    navigate(`/product/${rootId}`, { state: { item } });
+    setSearchQuery("");
+    setShowSearchBar(false);
   };
 
   useEffect(() => {
@@ -52,13 +66,6 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  useEffect(() => {
-    const filtered = paginationItems.filter((item) =>
-      item.productName.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredProducts(filtered);
-  }, [searchQuery]);
 
   return (
     <div className="w-full h-25 bg-white sticky top-0 z-50 border-b-[1px] border-b-gray-200">
@@ -83,9 +90,6 @@ const Header = () => {
 
             {/* Secciones centradas */}
             <div className="flex gap-6 mx-auto">
-              <Link to="/sneakers" className="text-primeColor hover:text-gray-600 duration-300">
-                Sneakers
-              </Link>
               <Link to="/hombre" className="text-primeColor hover:text-gray-600 duration-300">
                 Hombre
               </Link>
@@ -116,30 +120,34 @@ const Header = () => {
                 </button>
 
                 {/* Resultados de búsqueda */}
-                {searchQuery && (
-                  <div className="absolute top-14 left-0 w-full max-h-96 bg-white shadow-2xl z-50 overflow-y-auto rounded-lg">
+                {showSearchBar && searchQuery.length > 0 && (
+                  <div className="absolute top-full right-0 w-full md:w-[500px] bg-white border border-gray-300 shadow-lg rounded-b-md max-h-[70vh] overflow-y-auto z-50">
                     {filteredProducts.length > 0 ? (
                       filteredProducts.map((item) => (
                         <div
-                          key={item._id}
-                          onClick={() => {
-                            navigate(`/product/${item.productName.toLowerCase().replace(/\s+/g, "")}`, {
-                              state: { item },
-                            });
-                            setSearchQuery("");
-                          }}
-                          className="flex items-center gap-3 p-3 border-b hover:bg-gray-200 cursor-pointer"
+                          key={item.id}
+                          onClick={() => handleProductClick(item)}
+                          className="flex items-center gap-4 p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-200"
                         >
-                          <img className="w-16 h-16 object-cover" src={item.img} alt={item.productName} />
-                          <div>
-                            <p className="text-sm font-semibold">{item.productName}</p>
-                            <p className="text-xs text-gray-500">{item.des}</p>
-                            <p className="text-sm text-primeColor font-semibold">${item.price}</p>
+                          <img
+                            src={item.img}
+                            alt={item.productName}
+                            className="w-16 h-16 object-cover rounded"
+                          />
+                          <div className="flex-1">
+                            <h3 className="font-medium">{item.productName}</h3>
+                            <p className="text-sm text-gray-600">{item.brand}</p>
+                            <p className="text-sm font-semibold">${item.price.toLocaleString('es-CO')}</p>
+                          </div>
+                          <div className="text-xs px-2 py-1 bg-gray-100 rounded">
+                            {item.category}
                           </div>
                         </div>
                       ))
                     ) : (
-                      <p className="p-3 text-gray-500 text-sm">No se encontraron resultados</p>
+                      <div className="p-4 text-center text-gray-500">
+                        No se encontraron productos
+                      </div>
                     )}
                   </div>
                 )}
@@ -180,7 +188,7 @@ const Header = () => {
                   <div className="relative">
                     <FaShoppingCart />
                     <span className="absolute font-titleFont top-3 -right-2 text-xs w-4 h-4 flex items-center justify-center rounded-full bg-primeColor text-white">
-                      {products.length > 0 ? products.length : 0}
+                      {cartProducts.length > 0 ? cartProducts.length : 0}
                     </span>
                   </div>
                 </Link>
@@ -210,22 +218,20 @@ const Header = () => {
                       transition={{ duration: 0.5 }}
                       className="absolute top-14 z-50 bg-primeColor w-auto text-[#767676] h-auto p-4 pb-6"
                     >
-                      <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                        Sneakers
-                      </li>
-                      <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                        Hombre
-                      </li>
-                      <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                        Mujer
-                      </li>
-                      <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                        Niños
-                      </li>
-                      <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                        Originales
-                      </li>
-                      
+                      {[
+                        { name: "Hombre", path: "/hombre" },
+                        { name: "Mujer", path: "/mujer" },
+                        { name: "Niños", path: "/ninos" },
+                        { name: "Originales", path: "/originales" },
+                      ].map((item) => (
+                        <li
+                          key={item.path}
+                          className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer"
+                          onClick={() => navigate(item.path)}
+                        >
+                          {item.name}
+                        </li>
+                      ))}
                     </motion.ul>
                   )}
                 </div>
@@ -258,7 +264,7 @@ const Header = () => {
                 <div className="relative">
                   <FaShoppingCart />
                   <span className="absolute font-titleFont top-3 -right-2 text-xs w-4 h-4 flex items-center justify-center rounded-full bg-primeColor text-white">
-                    {products.length > 0 ? products.length : 0}
+                    {cartProducts.length > 0 ? cartProducts.length : 0}
                   </span>
                 </div>
               </Link>
@@ -326,12 +332,8 @@ const Header = () => {
               <div className="mt-4 overflow-y-auto max-h-[70vh]">
                 {filteredProducts.map((item) => (
                   <div
-                    key={item._id}
-                    onClick={() => {
-                      navigate(`/product/${item.productName}`);
-                      setSearchQuery("");
-                      setShowSearchBar(false);
-                    }}
+                    key={item.id}
+                    onClick={() => handleProductClick(item)}
                     className="flex items-center gap-3 p-3 border-b cursor-pointer"
                   >
                     <img
@@ -341,9 +343,9 @@ const Header = () => {
                     />
                     <div>
                       <p className="font-semibold">{item.productName}</p>
-                      <p className="text-sm">{item.des}</p>
+                      <p className="text-sm">{item.brand}</p>
                       <p className="text-primeColor font-bold">
-                        ${item.price}
+                        ${item.price.toLocaleString('es-CO')}
                       </p>
                     </div>
                   </div>

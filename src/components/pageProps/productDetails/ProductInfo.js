@@ -52,24 +52,31 @@ const ProductInfo = ({ productInfo }) => {
         <span className="font-normal">Color:</span> {productInfo.color}
       </p>
 
-      {/* Selector de talla */}
-      <div>
-        <label htmlFor="size" className="block font-medium">
-          Selecciona una talla:
-        </label>
-        <select
-          id="size"
-          className="border border-gray-300 p-2 rounded mt-1"
-          value={selectedSize}
-          onChange={(e) => setSelectedSize(e.target.value)}
-        >
-          <option value="">-- Selecciona --</option>
+      {/* Selector de talla con botones */}
+      <div className="flex flex-col gap-2">
+        <p className="font-medium">Tallas disponibles:</p>
+        <div className="flex flex-wrap gap-2">
           {productInfo.sizes?.map((size) => (
-            <option key={size} value={size}>
+            <button
+              key={size}
+              onClick={() => setSelectedSize(size)}
+              className={`
+                py-2 px-4 border text-sm font-semibold uppercase duration-300
+                ${selectedSize === size
+                  ? 'border-gray-900 bg-gray-900 text-white'
+                  : 'border-gray-300 bg-white text-gray-800 hover:border-gray-900'
+                }
+              `}
+            >
               {size}
-            </option>
+            </button>
           ))}
-        </select>
+        </div>
+        {selectedSize && (
+          <p className="text-sm text-gray-600">
+            Talla seleccionada: {selectedSize}
+          </p>
+        )}
       </div>
 
       {/* Botón Agregar al carrito */}
