@@ -4,6 +4,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fondo general del body */
+body {
+  background-color: white; /* Fondo blanco por defecto */
+  font-family: 'DM Sans', sans-serif; /* Fuente por defecto */
+}
+
+/* Fondo con grafiti solo en la sección de los posts */
+.postSection {
+  background-image: url('./assets/images/grafiti.png'); /* Ruta a la imagen de grafiti */
+  background-repeat: repeat; /* Repetir el grafiti */
+  background-size: 200px; /* Tamaño del grafiti */
+  padding: 20px; /* Espaciado interno */
+  border-radius: 10px; /* Bordes redondeados opcionales */
+}
+
 @layer components {
   .hoverEffect {
     @apply duration-300 cursor-pointer;
@@ -32,44 +47,43 @@ nav .active li {
   display: none;
 }
 
-  /* Grid adaptable para los productos */
+/* Grid adaptable para los productos */
+.productGrid {
+  @apply grid grid-cols-1 gap-4; /* 1 columna por defecto */
+}
+
+@screen sm {
   .productGrid {
-    @apply grid grid-cols-1 gap-4; /* 1 columna por defecto */
+    @apply grid-cols-2; /* 2 columnas en pantallas pequeñas */
   }
+}
 
-  @screen sm {
-    .productGrid {
-      @apply grid-cols-2; /* 2 columnas en pantallas pequeñas */
-    }
+@screen md {
+  .productGrid {
+    @apply grid-cols-3; /* 3 columnas en pantallas medianas */
   }
+}
 
-  @screen md {
-    .productGrid {
-      @apply grid-cols-3; /* 3 columnas en pantallas medianas */
-    }
+@screen lg {
+  .productGrid {
+    @apply grid-cols-4; /* 4 columnas en pantallas grandes */
   }
+}
 
-  @screen lg {
-    .productGrid {
-      @apply grid-cols-4; /* 4 columnas en pantallas grandes */
-    }
-  }
+/* Estilo para imágenes */
+.productImage {
+  @apply w-full h-48 object-cover rounded-lg;
+}
 
-  /* Estilo para imágenes */
-  .productImage {
-    @apply w-full h-48 object-cover rounded-lg;
-  }
+/* Estilo para botones */
+.productButton {
+  @apply bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition;
+}
 
-  /* Estilo para botones */
+@screen sm {
   .productButton {
-    @apply bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition;
+    @apply text-sm px-3 py-1; /* Botón más compacto en móviles */
   }
-
-  @screen sm {
-    .productButton {
-      @apply text-sm px-3 py-1; /* Botón más compacto en móviles */
-    }
-  }
-
+}
 
 /* ============= NavLink active End here ================ */

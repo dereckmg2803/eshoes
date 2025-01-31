@@ -11,19 +11,18 @@ const ProductInfo = ({ productInfo }) => {
       alert("Por favor selecciona una talla antes de agregar al carrito.");
       return;
     }
+
+    // Añadir el producto al carrito con la talla seleccionada
     dispatch(
       addToCart({
-        _id: productInfo.id,
-        name: productInfo.productName,
-        quantity: 1,
-        size: selectedSize,
+        ...productInfo, // Incluye todos los detalles del producto
+        size: selectedSize, // Añade la talla seleccionada
+        quantity: 1, // Cantidad inicial
         image: productInfo.img,
-        badge: productInfo.badge,
-        price: productInfo.price,
-        discountedPrice: Math.round(productInfo.price * 0.6),
-        colors: productInfo.color,
       })
     );
+
+    
   };
 
   const handleWhatsAppPurchase = () => {

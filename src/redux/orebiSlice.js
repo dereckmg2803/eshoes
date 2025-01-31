@@ -1,52 +1,69 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userInfo: [],
-  products: [],
+  products: [], // Array de productos en el carrito
 };
 
 export const orebiSlice = createSlice({
   name: "orebi",
   initialState,
   reducers: {
+    // Añadir producto al carrito
     addToCart: (state, action) => {
-      console.log("Payload recibido:", action.payload);
-      console.log("Estado actual del carrito:", state.products);
-    
-      const item = state.products.find(
-        (item) => item._id === action.payload._id && item.size === action.payload.size
+      const { _id, size, quantity } = action.payload;
+
+      // Buscar si el producto ya está en el carrito con la misma talla
+      const existingProduct = state.products.find(
+        (item) => item._id === _id && item.size === size
       );
-      if (item) {
-        item.quantity += action.payload.quantity;
+
+      if (existingProduct) {
+        // Si ya existe, incrementar la cantidad
+        existingProduct.quantity += quantity || 1;
       } else {
-        state.products.push({ ...action.payload, quantity: action.payload.quantity || 1 });
+        // Si no existe, añadir el producto al carrito
+        state.products.push({ ...action.payload, quantity: quantity || 1 });
       }
-    
-      console.log("Estado actualizado del carrito:", state.products);
     },
+
+    // Incrementar cantidad de un producto
     increaseQuantity: (state, action) => {
+      const { _id, size } = action.payload;
       const item = state.products.find(
-        (item) => item._id === action.payload._id
+        (item) => item._id === _id && item.size === size
       );
       if (item) {
         item.quantity++;
       }
     },
-    drecreaseQuantity: (state, action) => {
+
+    // Decrementar cantidad de un producto
+    decreaseQuantity: (state, action) => {
+      const { _id, size } = action.payload;
       const item = state.products.find(
-        (item) => item._id === action.payload._id
+        (item) => item._id === _id && item.size === size
       );
-      if (item.quantity === 1) {
-        item.quantity = 1;
-      } else {
-        item.quantity--;
+      if (item) {
+        if (item.quantity > 1) {
+          item.quantity--;
+        } else {
+          // Si la cantidad es 1, eliminar el producto del carrito
+          state.products = state.products.filter(
+            (product) => !(product._id === _id && product.size === size)
+          );
+        }
       }
     },
+
+    // Eliminar un producto del carrito
     deleteItem: (state, action) => {
+      const { _id, size } = action.payload;
       state.products = state.products.filter(
-        (item) => item._id !== action.payload
+        (item) => !(item._id === _id && item.size === size)
       );
     },
+
+    // Vaciar el carrito
     resetCart: (state) => {
       state.products = [];
     },
@@ -56,7 +73,7 @@ export const orebiSlice = createSlice({
 export const {
   addToCart,
   increaseQuantity,
-  drecreaseQuantity,
+  decreaseQuantity,
   deleteItem,
   resetCart,
 } = orebiSlice.actions;
