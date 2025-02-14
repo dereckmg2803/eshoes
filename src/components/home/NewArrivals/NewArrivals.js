@@ -8,12 +8,16 @@ import {
   newArrThree,
   newArrFour,
 } from "../../../assets/images/index";
+<<<<<<< HEAD
 import SampleNextArrow from "./SampleNextArrow";
 import SamplePrevArrow from "./SamplePrevArrow";
+=======
+>>>>>>> nueva-rama
 
 const NewArrivals = () => {
   const [isMobile, setIsMobile] = useState(false);
 
+<<<<<<< HEAD
   // Detectar si el usuario está en una pantalla móvil
   useEffect(() => {
     const handleResize = () => {
@@ -29,6 +33,21 @@ const NewArrivals = () => {
   }, []);
 
  
+=======
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+>>>>>>> nueva-rama
   const calculateDiscountedPrice = (price) => {
     const numericPrice = parseFloat(price.replace(/\./g, '').replace(',', '.'));
     const discountedPrice = numericPrice * 0.6;
@@ -92,15 +111,26 @@ const NewArrivals = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 4,
+<<<<<<< HEAD
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+=======
+    slidesToScroll: 2,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    arrows: false,
+>>>>>>> nueva-rama
     responsive: [
       {
         breakpoint: 1025,
         settings: {
           slidesToShow: 3,
+<<<<<<< HEAD
           slidesToScroll: 1,
+=======
+          slidesToScroll: 2,
+>>>>>>> nueva-rama
           infinite: true,
         },
       },
@@ -110,20 +140,34 @@ const NewArrivals = () => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
+<<<<<<< HEAD
+=======
+          autoplay: true,
+          autoplaySpeed: 2000,
+>>>>>>> nueva-rama
         },
       },
       {
         breakpoint: 480,
         settings: {
+<<<<<<< HEAD
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
+=======
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 2000,
+>>>>>>> nueva-rama
         },
       },
     ],
   };
 
   return (
+<<<<<<< HEAD
     <div className="w-full pb-16">
       <Heading heading="Más Vendidos" />
       {isMobile ? (
@@ -143,6 +187,17 @@ const NewArrivals = () => {
           ))}
         </Slider>
       )}
+=======
+    <div className="w-full">
+      <Heading heading="" />
+      <Slider {...settings}>
+        {products.map((product) => (
+          <div key={product._id} className="px-2">
+            <Product {...product} />
+          </div>
+        ))}
+      </Slider>
+>>>>>>> nueva-rama
     </div>
   );
 };

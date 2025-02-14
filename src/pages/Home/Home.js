@@ -5,6 +5,10 @@ import NewArrivals from "../../components/home/NewArrivals/NewArrivals";
 import Sale from "../../components/home/Sale/Sale";
 import SpecialOffers from "../../components/home/SpecialOffers/SpecialOffers";
 import YearProduct from "../../components/home/YearProduct/YearProduct";
+<<<<<<< HEAD
+=======
+import Alertas from "../../components/home/alertas/alertas";
+>>>>>>> nueva-rama
 
 const Home = () => {
   return (
@@ -14,6 +18,10 @@ const Home = () => {
       <div className="max-w-container mx-auto px-4">
         <NewArrivals />
         <Sale />
+<<<<<<< HEAD
+=======
+        <Alertas/>
+>>>>>>> nueva-rama
         <BestSellers />
         <YearProduct />
         <SpecialOffers />

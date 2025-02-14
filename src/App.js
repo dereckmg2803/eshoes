@@ -22,6 +22,13 @@ import Offer from "./pages/Offer/Offer";
 import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
+<<<<<<< HEAD
+=======
+import TerminosServicio from "./pages/terminosServicio/TerminosServicio"; // Ajusta la ruta según tu estructura de archivos
+import PoliticaReembolso from "./pages/PoliticaReembolso/PoliticaReembolso";
+
+
+>>>>>>> nueva-rama
 
 const Layout = () => {
   return (
@@ -65,6 +72,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<Layout />}>
+<<<<<<< HEAD
         {/* ==================== Header Navlink Start here =================== */}
         <Route index element={<Home />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
@@ -79,10 +87,31 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/signin" element={<SignIn />}></Route>
+=======
+        <Route index element={<Home />} />
+        <Route path="/politica-reembolso" element={<PoliticaReembolso />} />
+
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/journal" element={<Journal />} />
+        <Route path="/offer" element={<Offer />} />
+        <Route path="/product/:_id" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/paymentgateway" element={<Payment />} />
+        <Route path="/terminosServicio" element={<TerminosServicio />} /> {/* ✅ Nueva ruta añadida */}
+      </Route>
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/signin" element={<SignIn />} />
+>>>>>>> nueva-rama
     </Route>
   )
 );
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> nueva-rama
 function App() {
   return (
     <div className="font-bodyFont">
