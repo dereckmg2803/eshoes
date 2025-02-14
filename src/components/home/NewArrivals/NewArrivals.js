@@ -8,32 +8,10 @@ import {
   newArrThree,
   newArrFour,
 } from "../../../assets/images/index";
-<<<<<<< HEAD
-import SampleNextArrow from "./SampleNextArrow";
-import SamplePrevArrow from "./SamplePrevArrow";
-=======
->>>>>>> nueva-rama
 
 const NewArrivals = () => {
   const [isMobile, setIsMobile] = useState(false);
 
-<<<<<<< HEAD
-  // Detectar si el usuario está en una pantalla móvil
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Pantallas de 768px o menos serán consideradas móviles
-    };
-
-    handleResize(); // Comprobar inicialmente
-    window.addEventListener("resize", handleResize); // Añadir listener para cambios de tamaño
-
-    return () => {
-      window.removeEventListener("resize", handleResize); // Limpiar el listener
-    };
-  }, []);
-
- 
-=======
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -47,7 +25,6 @@ const NewArrivals = () => {
     };
   }, []);
 
->>>>>>> nueva-rama
   const calculateDiscountedPrice = (price) => {
     const numericPrice = parseFloat(price.replace(/\./g, '').replace(',', '.'));
     const discountedPrice = numericPrice * 0.6;
@@ -111,26 +88,16 @@ const NewArrivals = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-<<<<<<< HEAD
-    slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-=======
     slidesToScroll: 2,
     autoplay: true,
     autoplaySpeed: 2000,
     arrows: false,
->>>>>>> nueva-rama
     responsive: [
       {
         breakpoint: 1025,
         settings: {
           slidesToShow: 3,
-<<<<<<< HEAD
-          slidesToScroll: 1,
-=======
           slidesToScroll: 2,
->>>>>>> nueva-rama
           infinite: true,
         },
       },
@@ -140,54 +107,24 @@ const NewArrivals = () => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-<<<<<<< HEAD
-=======
           autoplay: true,
           autoplaySpeed: 2000,
->>>>>>> nueva-rama
         },
       },
       {
         breakpoint: 480,
         settings: {
-<<<<<<< HEAD
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-=======
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
           autoplay: true,
           autoplaySpeed: 2000,
->>>>>>> nueva-rama
         },
       },
     ],
   };
 
   return (
-<<<<<<< HEAD
-    <div className="w-full pb-16">
-      <Heading heading="Más Vendidos" />
-      {isMobile ? (
-        // Diseño en grid para pantallas móviles
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {products.map((product) => (
-            <Product key={product._id} {...product} />
-          ))}
-        </div>
-      ) : (
-        // Carrusel para pantallas más grandes
-        <Slider {...settings}>
-          {products.map((product) => (
-            <div key={product._id} className="px-2">
-              <Product {...product} />
-            </div>
-          ))}
-        </Slider>
-      )}
-=======
     <div className="w-full">
       <Heading heading="" />
       <Slider {...settings}>
@@ -197,7 +134,6 @@ const NewArrivals = () => {
           </div>
         ))}
       </Slider>
->>>>>>> nueva-rama
     </div>
   );
 };

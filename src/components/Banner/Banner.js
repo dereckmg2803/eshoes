@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-=======
 import React, { useState, useEffect } from "react";
->>>>>>> nueva-rama
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import {
@@ -13,8 +9,6 @@ import Image from "../designLayouts/Image";
 
 const Banner = () => {
   const [dotActive, setDocActive] = useState(0);
-<<<<<<< HEAD
-=======
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 576);
 
   // Efecto para detectar cambios en el tamaño de la ventana
@@ -31,7 +25,6 @@ const Banner = () => {
     };
   }, []);
 
->>>>>>> nueva-rama
   const settings = {
     dots: true,
     infinite: true,
@@ -121,28 +114,6 @@ const Banner = () => {
       },
     ],
   };
-<<<<<<< HEAD
-  return (
-    <div className="w-full bg-white">
-      <Slider {...settings}>
-        <Link to="/offer">
-          <div>
-            <Image imgSrc={bannerImgOne} />
-          </div>
-        </Link>
-        <Link to="/offer">
-          <div>
-            <Image imgSrc={bannerImgTwo} />
-          </div>
-        </Link>
-        
-      </Slider>
-    </div>
-  );
-};
-
-export default Banner;
-=======
 
   return (
     <div className="w-full">
@@ -158,4 +129,3 @@ export default Banner;
 };
 
 export default Banner;
->>>>>>> nueva-rama
