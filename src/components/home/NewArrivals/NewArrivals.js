@@ -125,8 +125,8 @@ const NewArrivals = () => {
   };
 
   return (
-    <div className="w-full pb-16">
-      <Heading heading="Más Vendidos" />
+    <div className="w-full">
+      <Heading heading="" />
       <Slider {...settings}>
         {products.map((product) => (
           <div key={product._id} className="px-2">

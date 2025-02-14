@@ -122,7 +122,7 @@ const SpecialOffers = () => {
 
   return (
     <div className="w-full pb-20">
-      <Heading heading="Tenis Urbanos" />
+      <Heading heading="" />
       {isMobile ? (
         // Diseño en grid para pantallas móviles
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">

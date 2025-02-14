@@ -1,8 +1,9 @@
 import { FaTiktok, FaInstagram, FaFacebook } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-b from-black to-black text-white py-8">
+    <footer className="from-white to-white text-black py-8">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
           {/* Sección de enlaces */}
@@ -13,12 +14,13 @@ const Footer = () => {
             <a href="/colecciones" className="hover:text-purple-400">
               Colecciones
             </a>
-            <a href="/terminos" className="hover:text-purple-400">
-              Términos del servicio
-            </a>
-            <a href="/politica-reembolso" className="hover:text-purple-400">
-              Política de reembolso
-            </a>
+            <Link to="/terminosServicio" className="hover:text-purple-400">
+  Términos del servicio
+</Link>
+<Link to="/politica-reembolso" className="hover:text-purple-400">
+  Política de reembolso
+</Link>
+
           </div>
 
           {/* Sección de iconos sociales */}
