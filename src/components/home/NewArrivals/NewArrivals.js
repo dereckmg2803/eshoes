@@ -5,38 +5,43 @@ import Product from "../Products/Product";
 import { getNewArrivals } from "../../../data/products";
 
 const NewArrivals = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [isSliding, setIsSliding] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
+    handleResize();
     window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const calculateDiscountedPrice = (price) => {
+    const numericPrice = parseFloat(price.replace(/\./g, '').replace(',', '.'));
+    const discountedPrice = numericPrice * 0.6;
+    return discountedPrice.toLocaleString('de-DE', { minimumFractionDigits: 0 });
+  };
 
   const products = getNewArrivals();
 
   const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: isMobile ? 1 : 4,
-    slidesToScroll: 1,
+    slidesToShow: 4,
+    slidesToScroll: 2,
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: false,
-    beforeChange: () => setIsSliding(true),
-    afterChange: () => setIsSliding(false),
     responsive: [
       {
         breakpoint: 1025,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
+          slidesToScroll: 2,
           infinite: true,
           autoplay: true,
         },
@@ -45,7 +50,7 @@ const NewArrivals = () => {
         breakpoint: 769,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
+          slidesToScroll: 2,
           infinite: true,
           autoplay: true,
         },
@@ -53,8 +58,8 @@ const NewArrivals = () => {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: 2,
+          slidesToScroll: 2,
           infinite: true,
           autoplay: true,
         },
@@ -64,12 +69,12 @@ const NewArrivals = () => {
 
   return (
     <div className="w-full pb-16">
-      <Heading heading="New Arrivals" />
+      <Heading heading="" />
       <div className="w-full">
         <Slider {...settings} className="w-full">
           {products.map((product) => (
             <div key={product.id} className="px-2">
-              <Product {...product} isMobile={isMobile} isSliding={isSliding} />
+              <Product {...product} />
             </div>
           ))}
         </Slider>
