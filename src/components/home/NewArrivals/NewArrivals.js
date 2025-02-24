@@ -6,6 +6,7 @@ import { getNewArrivals } from "../../../data/products";
 
 const NewArrivals = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isSliding, setIsSliding] = useState(false); // ✅ Definir fuera de useEffect
 
   useEffect(() => {
     const handleResize = () => {
@@ -28,6 +29,8 @@ const NewArrivals = () => {
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: false,
+    beforeChange: () => setIsSliding(true),  // ✅ Ahora setIsSliding está definido
+    afterChange: () => setIsSliding(false),  // ✅ No más error de no-undef
     responsive: [
       {
         breakpoint: 1025,
@@ -66,7 +69,7 @@ const NewArrivals = () => {
         <Slider {...settings} className="w-full">
           {products.map((product) => (
             <div key={product.id} className="px-2">
-              <Product {...product} isMobile={isMobile} />
+              <Product {...product} isMobile={isMobile} isSliding={isSliding} />
             </div>
           ))}
         </Slider>
