@@ -5,26 +5,18 @@ import Product from "../Products/Product";
 import { getNewArrivals } from "../../../data/products";
 
 const NewArrivals = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    handleResize();
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  const calculateDiscountedPrice = (price) => {
-    const numericPrice = parseFloat(price.replace(/\./g, '').replace(',', '.'));
-    const discountedPrice = numericPrice * 0.6;
-    return discountedPrice.toLocaleString('de-DE', { minimumFractionDigits: 0 });
-  };
 
   const products = getNewArrivals();
 
@@ -74,7 +66,7 @@ const NewArrivals = () => {
         <Slider {...settings} className="w-full">
           {products.map((product) => (
             <div key={product.id} className="px-2">
-              <Product {...product} />
+              <Product {...product} isMobile={isMobile} />
             </div>
           ))}
         </Slider>
