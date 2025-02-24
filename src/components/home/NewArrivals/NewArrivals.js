@@ -6,7 +6,7 @@ import { getNewArrivals } from "../../../data/products";
 
 const NewArrivals = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [isSliding, setIsSliding] = useState(false); // ✅ Definir fuera de useEffect
+  const [isSliding, setIsSliding] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -24,19 +24,19 @@ const NewArrivals = () => {
   const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 2,
+    slidesToShow: isMobile ? 1 : 4,
+    slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: false,
-    beforeChange: () => setIsSliding(true),  // ✅ Ahora setIsSliding está definido
-    afterChange: () => setIsSliding(false),  // ✅ No más error de no-undef
+    beforeChange: () => setIsSliding(true),
+    afterChange: () => setIsSliding(false),
     responsive: [
       {
         breakpoint: 1025,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           infinite: true,
           autoplay: true,
         },
@@ -45,7 +45,7 @@ const NewArrivals = () => {
         breakpoint: 769,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           infinite: true,
           autoplay: true,
         },
@@ -53,8 +53,8 @@ const NewArrivals = () => {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 1,
+          slidesToScroll: 1,
           infinite: true,
           autoplay: true,
         },
@@ -64,7 +64,7 @@ const NewArrivals = () => {
 
   return (
     <div className="w-full pb-16">
-      <Heading heading="" />
+      <Heading heading="New Arrivals" />
       <div className="w-full">
         <Slider {...settings} className="w-full">
           {products.map((product) => (

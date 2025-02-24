@@ -72,7 +72,7 @@ Product.propTypes = {
   price: PropTypes.number.isRequired,
   discountedPrice: PropTypes.number,
   badge: PropTypes.string,
-  isSliding: PropTypes.bool, // Nueva prop
+  isSliding: PropTypes.bool,
 };
 
 export default Product;
