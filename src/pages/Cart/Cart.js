@@ -12,14 +12,20 @@ const Cart = () => {
   const products = useSelector((state) => state.orebiReducer.products);
   const [totalAmt, setTotalAmt] = useState("");
   const [shippingCharge, setShippingCharge] = useState("");
+
+  const formatPrice = (price) => {
+    return `$${price.toLocaleString("es-CO", { minimumFractionDigits: 0 })}`;
+  };
+
   useEffect(() => {
     let price = 0;
     products.map((item) => {
-      price += item.price * item.quantity;
+      price += parseFloat(item.price) * item.quantity;
       return price;
     });
     setTotalAmt(price);
   }, [products]);
+
   useEffect(() => {
     if (totalAmt <= 200) {
       setShippingCharge(30);
@@ -29,6 +35,7 @@ const Cart = () => {
       setShippingCharge(20);
     }
   }, [totalAmt]);
+
   return (
     <div className="max-w-container mx-auto px-4">
       <Breadcrumbs title="Cart" />
@@ -75,19 +82,19 @@ const Cart = () => {
                 <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
                   Subtotal
                   <span className="font-semibold tracking-wide font-titleFont">
-                    ${totalAmt}
+                    {formatPrice(totalAmt)}
                   </span>
                 </p>
                 <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
                   Shipping Charge
                   <span className="font-semibold tracking-wide font-titleFont">
-                    ${shippingCharge}
+                    {formatPrice(shippingCharge)}
                   </span>
                 </p>
                 <p className="flex items-center justify-between border-[1px] border-gray-400 py-1.5 text-lg px-4 font-medium">
                   Total
                   <span className="font-bold tracking-wide text-lg font-titleFont">
-                    ${totalAmt + shippingCharge}
+                    {formatPrice(totalAmt + shippingCharge)}
                   </span>
                 </p>
               </div>

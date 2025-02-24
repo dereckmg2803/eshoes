@@ -12,13 +12,14 @@ const ProductInfo = ({ productInfo }) => {
       return;
     }
 
-    // Añadir el producto al carrito con la talla seleccionada
+    // Añadir el producto al carrito con la talla seleccionada y el precio con descuento
     dispatch(
       addToCart({
         ...productInfo, // Incluye todos los detalles del producto
         size: selectedSize, // Añade la talla seleccionada
         quantity: 1, // Cantidad inicial
         image: productInfo.img,
+        price: productInfo.discountedPrice // Añade el precio con descuento
       })
     );
 
@@ -45,7 +46,7 @@ const ProductInfo = ({ productInfo }) => {
       <h2 className="text-2xl sm:text-4xl font-semibold">{productInfo.productName}</h2>
       <div className="text-lg sm:text-xl font-semibold flex gap-2">
         <p className="line-through text-gray-500">{formatPrice(productInfo.price)}</p>
-        <p className="text-red-600">{formatPrice(Math.round(productInfo.price * 0.6))}</p>
+        <p className="text-red-600">{formatPrice(productInfo.discountedPrice)}</p>
       </div>
       <p className="text-sm sm:text-base text-gray-600">{productInfo.des}</p>
       <p className="font-medium text-sm sm:text-lg">

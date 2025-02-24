@@ -10,6 +10,8 @@ import { logo } from "../../../assets/images";
 import Image from "../../designLayouts/Image";
 import Flex from "../../designLayouts/Flex";
 import { products } from "../../../data/products";
+import './Header.css'; // Importar el archivo CSS
+
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(true);
@@ -81,121 +83,124 @@ const Header = () => {
 
       <nav className="h-24 px-4 max-w-container mx-auto relative">
         {/* Vista para escritorio (solo se muestra si no es móvil) */}
-        {!isMobile && (
-          <Flex className="hidden md:flex items-center justify-between h-full px-6">
-            {/* Logo a la izquierda */}
-            <Link to="/" className="flex justify-center items-center">
-              <Image className="w-20 object-cover" imgSrc={logo} />
-            </Link>
+{!isMobile && (
+  <Flex className="hidden md:flex items-center justify-between h-full px-6">
+    {/* Logo a la izquierda */}
+    <Link to="/" className="flex justify-center items-center">
+      <Image className="w-20 object-cover" imgSrc={logo} />
+    </Link>
 
-            {/* Secciones centradas */}
-            <div className="flex gap-6 mx-auto">
-              <Link to="/hombre" className="text-primeColor hover:text-gray-600 duration-300">
-                Hombre
-              </Link>
-              <Link to="/mujer" className="text-primeColor hover:text-gray-600 duration-300">
-                Mujer
-              </Link>
-              <Link to="/ninos" className="text-primeColor hover:text-gray-600 duration-300">
-                Niños
-              </Link>
-              <Link to="/originales" className="text-primeColor hover:text-gray-600 duration-300">
-                Originales
-              </Link>
-            </div>
+    {/* Secciones centradas */}
+    <div className="flex gap-6 mx-auto">
+      <Link to="/hombre" className="text-primeColor hover-effect">
+        Hombre
+      </Link>
+      <Link to="/mujer" className="text-primeColor hover-effect">
+        Mujer
+      </Link>
+      <Link to="/ninos" className="text-primeColor hover-effect">
+        Niños
+      </Link>
+      <Link to="/originales" className="text-primeColor hover-effect">
+        Originales
+      </Link>
+    </div>
 
-            {/* Barra de búsqueda y elementos de usuario a la derecha */}
-            <div className="flex items-center gap-6">
-              {/* Barra de búsqueda */}
-              <div className="relative w-[290px] h-[50px] text-base text-primeColor bg-gray-100 flex items-center gap-2 justify-between px-6 rounded-xl">
-                <input
-                  className="flex-1 h-full outline-none placeholder:text-[#767676] placeholder:text-[11px] bg-transparent"
-                  type="text"
-                  onChange={handleSearch}
-                  value={searchQuery}
-                  placeholder="Buscar"
-                />
-                <button className="text-lg" aria-label="Search">
-                  <FaSearch className="w-5 h-5" />
-                </button>
+    {/* Barra de búsqueda y elementos de usuario a la derecha */}
+    <div className="flex items-center gap-6">
+      {/* Barra de búsqueda */}
+      <div className="relative w-[290px] h-[50px] text-base text-primeColor bg-gray-100 flex items-center gap-2 justify-between px-6 rounded-xl">
+        <input
+          className="flex-1 h-full outline-none placeholder:text-[#767676] placeholder:text-[11px] bg-transparent"
+          type="text"
+          onChange={handleSearch}
+          value={searchQuery}
+          placeholder="Buscar"
+          onFocus={() => setShow(true)}
+          onBlur={() => setTimeout(() => setShow(false), 200)}
+        />
+        <button className="text-lg" aria-label="Search">
+          <FaSearch className="w-5 h-5" />
+        </button>
 
-                {/* Resultados de búsqueda */}
-                {showSearchBar && searchQuery.length > 0 && (
-                  <div className="absolute top-full right-0 w-full md:w-[500px] bg-white border border-gray-300 shadow-lg rounded-b-md max-h-[70vh] overflow-y-auto z-50">
-                    {filteredProducts.length > 0 ? (
-                      filteredProducts.map((item) => (
-                        <div
-                          key={item.id}
-                          onClick={() => handleProductClick(item)}
-                          className="flex items-center gap-4 p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-200"
-                        >
-                          <img
-                            src={item.img}
-                            alt={item.productName}
-                            className="w-16 h-16 object-cover rounded"
-                          />
-                          <div className="flex-1">
-                            <h3 className="font-medium">{item.productName}</h3>
-                            <p className="text-sm text-gray-600">{item.brand}</p>
-                            <p className="text-sm font-semibold">${item.price.toLocaleString('es-CO')}</p>
-                          </div>
-                          <div className="text-xs px-2 py-1 bg-gray-100 rounded">
-                            {item.category}
-                          </div>
-                        </div>
-                      ))
-                    ) : (
-                      <div className="p-4 text-center text-gray-500">
-                        No se encontraron productos
-                      </div>
-                    )}
+        {/* Resultados de búsqueda */}
+        {show && searchQuery.length > 0 && (
+          <div className="absolute top-full right-0 w-full md:w-[500px] bg-white border border-gray-300 shadow-lg rounded-b-md max-h-[70vh] overflow-y-auto z-50">
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((item) => (
+                <div
+                  key={item.id}
+                  onClick={() => handleProductClick(item)}
+                  className="flex items-center gap-4 p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-200"
+                >
+                  <img
+                    src={item.img}
+                    alt={item.productName}
+                    className="w-16 h-16 object-cover rounded"
+                  />
+                  <div className="flex-1">
+                    <h3 className="font-medium">{item.productName}</h3>
+                    <p className="text-sm text-gray-600">{item.brand}</p>
+                    <p className="text-sm font-semibold">${item.price.toLocaleString('es-CO')}</p>
                   </div>
-                )}
-              </div>
-
-              {/* Ícono de usuario y carrito */}
-              <div className="flex gap-4 items-center cursor-pointer relative">
-                <div onClick={() => setShowUser(!showUser)} className="flex">
-                  <FaUser />
-                  <FaCaretDown />
+                  <div className="text-xs px-2 py-1 bg-gray-100 rounded">
+                    {item.category}
+                  </div>
                 </div>
-                {showUser && (
-                  <motion.ul
-                    initial={{ y: 30, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="absolute top-6 left-0 z-50 bg-primeColor w-44 text-[#767676] h-auto p-4 pb-6"
-                  >
-                    <Link to="/signin">
-                      <li className="text-gray-400 px-4 py-1 border-b border-gray-400 hover:border-white hover:text-white duration-300 cursor-pointer">
-                        Login
-                      </li>
-                    </Link>
-                    <Link onClick={() => setShowUser(false)} to="/signup">
-                      <li className="text-gray-400 px-4 py-1 border-b border-gray-400 hover:border-white hover:text-white duration-300 cursor-pointer">
-                        Sign Up
-                      </li>
-                    </Link>
-                    <li className="text-gray-400 px-4 py-1 border-b border-gray-400 hover:border-white hover:text-white duration-300 cursor-pointer">
-                      Profile
-                    </li>
-                    <li className="text-gray-400 px-4 py-1 border-b border-gray-400 hover:border-white hover:text-white duration-300 cursor-pointer">
-                      Others
-                    </li>
-                  </motion.ul>
-                )}
-                <Link to="/cart">
-                  <div className="relative">
-                    <FaShoppingCart />
-                    <span className="absolute font-titleFont top-3 -right-2 text-xs w-4 h-4 flex items-center justify-center rounded-full bg-primeColor text-white">
-                      {cartProducts.length > 0 ? cartProducts.length : 0}
-                    </span>
-                  </div>
-                </Link>
+              ))
+            ) : (
+              <div className="p-4 text-center text-gray-500">
+                No se encontraron productos
               </div>
-            </div>
-          </Flex>
+            )}
+          </div>
         )}
+      </div>
+
+      {/* Ícono de usuario y carrito */}
+      <div className="flex gap-4 items-center cursor-pointer relative">
+        <div onClick={() => setShowUser(!showUser)} className="flex">
+          <FaUser />
+          <FaCaretDown />
+        </div>
+        {showUser && (
+          <motion.ul
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="absolute top-6 left-0 z-50 bg-primeColor w-44 text-[#767676] h-auto p-4 pb-6"
+          >
+            <Link to="/signin">
+              <li className="text-gray-400 px-4 py-1 border-b border-gray-400 hover:border-white hover:text-white duration-300 cursor-pointer">
+                Login
+              </li>
+            </Link>
+            <Link onClick={() => setShowUser(false)} to="/signup">
+              <li className="text-gray-400 px-4 py-1 border-b border-gray-400 hover:border-white hover:text-white duration-300 cursor-pointer">
+                Sign Up
+              </li>
+            </Link>
+            <li className="text-gray-400 px-4 py-1 border-b border-gray-400 hover:border-white hover:text-white duration-300 cursor-pointer">
+              Profile
+            </li>
+            <li className="text-gray-400 px-4 py-1 border-b border-gray-400 hover:border-white hover:text-white duration-300 cursor-pointer">
+              Others
+            </li>
+          </motion.ul>
+        )}
+        <Link to="/cart">
+          <div className="relative">
+            <FaShoppingCart />
+            <span className="absolute font-titleFont top-3 -right-2 text-xs w-4 h-4 flex items-center justify-center rounded-full bg-primeColor text-white">
+              {cartProducts.length > 0 ? cartProducts.length : 0}
+            </span>
+          </div>
+        </Link>
+      </div>
+    </div>
+  </Flex>
+)}
+
 
         {/* Vista para móvil (solo se muestra si es móvil) */}
         {isMobile && (

@@ -7,11 +7,15 @@ import {
   newArrTwo,
   newArrThree,
   newArrFour,
+  spfOne,
+  spfTwo,
+  spfThree,
+  spfFour,
 } from "../assets/images/index";
 
-const calculateDiscountedPrice = (price) => {
+const calculateDiscountedPrice = (price, discountPercentage) => {
   const numericPrice = parseFloat(price);
-  const discountedPrice = numericPrice * 0.8; // 20% de descuento
+  const discountedPrice = numericPrice * (1 - discountPercentage / 100);
   return discountedPrice.toLocaleString('de-DE', { minimumFractionDigits: 0 });
 };
 
@@ -21,7 +25,8 @@ export const products = [
     img: bestSellerOne,
     productName: "Nike Air Max",
     price: 350000,
-    discountedPrice: calculateDiscountedPrice(350000),
+    discountPercentage: 20,
+    discountedPrice: calculateDiscountedPrice(350000, 20),
     color: "Black/White",
     badge: "Nuevo",
     category: "running",
@@ -35,7 +40,8 @@ export const products = [
     img: bestSellerTwo,
     productName: "Adidas Ultraboost",
     price: 180000,
-    discountedPrice: calculateDiscountedPrice(180000),
+    discountPercentage: 30,
+    discountedPrice: calculateDiscountedPrice(180000, 30),
     color: "Gray",
     badge: "Destacado",
     category: "running",
@@ -49,7 +55,8 @@ export const products = [
     img: bestSellerThree,
     productName: "Puma RS-X",
     price: 250000,
-    discountedPrice: calculateDiscountedPrice(250000),
+    discountPercentage: 20,
+    discountedPrice: calculateDiscountedPrice(250000, 20),
     color: "Mixed",
     badge: "Oferta",
     category: "casual",
@@ -63,7 +70,8 @@ export const products = [
     img: bestSellerFour,
     productName: "New Balance 574",
     price: 220000,
-    discountedPrice: calculateDiscountedPrice(220000),
+    discountPercentage: 20,
+    discountedPrice: calculateDiscountedPrice(220000, 20),
     color: "Navy",
     badge: false,
     category: "casual",
@@ -77,7 +85,8 @@ export const products = [
     img: newArrOne,
     productName: "Nike Air Jordan",
     price: 450000,
-    discountedPrice: calculateDiscountedPrice(450000),
+    discountPercentage: 20,
+    discountedPrice: calculateDiscountedPrice(450000, 20),
     color: "Red/Black",
     badge: "Premium",
     category: "basketball",
@@ -91,7 +100,8 @@ export const products = [
     img: newArrTwo,
     productName: "Adidas Superstar",
     price: 200000,
-    discountedPrice: calculateDiscountedPrice(200000),
+    discountPercentage: 20,
+    discountedPrice: calculateDiscountedPrice(200000, 20),
     color: "White/Black",
     badge: "Clásico",
     category: "casual",
@@ -105,7 +115,8 @@ export const products = [
     img: newArrThree,
     productName: "Vans Old Skool",
     price: 180000,
-    discountedPrice: calculateDiscountedPrice(180000),
+    discountPercentage: 20,
+    discountedPrice: calculateDiscountedPrice(180000, 20),
     color: "Black",
     badge: false,
     category: "skateboarding",
@@ -119,7 +130,8 @@ export const products = [
     img: newArrFour,
     productName: "Converse Chuck Taylor",
     price: 150000,
-    discountedPrice: calculateDiscountedPrice(150000),
+    discountPercentage: 20,
+    discountedPrice: calculateDiscountedPrice(150000, 20),
     color: "White",
     badge: "Clásico",
     category: "casual",
@@ -133,7 +145,8 @@ export const products = [
     img: newArrOne,
     productName: "Brooks Ghost 14",
     price: 380000,
-    discountedPrice: calculateDiscountedPrice(380000),
+    discountPercentage: 20,
+    discountedPrice: calculateDiscountedPrice(380000, 20),
     color: "Blue/Silver",
     badge: "Nuevo",
     category: "running",
@@ -141,6 +154,68 @@ export const products = [
     inStock: true,
     sizes: ["39", "40", "41", "42", "43"],
     brand: "Brooks"
+  },
+  {
+    id: "1101",
+    img: spfOne,
+    productName: "Cap for Boys",
+    price: 3500,
+    discountPercentage: 20,
+    discountedPrice: calculateDiscountedPrice(3500, 20),
+    color: "Blank and White",
+    badge: "Nuevo",
+    des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
+    category: "special",
+    inStock: true,
+    sizes: ["S", "M", "L"],
+    brand: "Generic"
+  },
+  {
+    id: "1102",
+    img: spfTwo,
+    moreImages: [spfTwo, spfFour],
+    productName: "Adidas Samba",
+    price: 190000,
+    discountPercentage: 20,
+    discountedPrice: calculateDiscountedPrice(190000, 20),
+    color: "Negro",
+    badge: "Oferta",
+    des: "Favorito entre los amantes de la comodidad y el diseño retro.",
+    category: "special",
+    inStock: true,
+    sizes: ["38", "39", "40", "41", "42"],
+    brand: "Adidas"
+  },
+  {
+    id: "1103",
+    img: spfThree,
+    moreImages: [spfThree, spfFour],
+    productName: "Headphones",
+    price: 2500,
+    discountPercentage: 20,
+    discountedPrice: calculateDiscountedPrice(2500, 20),
+    color: "Mixed",
+    badge: "Nuevo",
+    des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
+    category: "special",
+    inStock: true,
+    sizes: ["One Size"],
+    brand: "Generic"
+  },
+  {
+    id: "1104",
+    img: spfFour,
+    productName: "New Balance 530",
+    price: 230000,
+    discountPercentage: 20,
+    discountedPrice: calculateDiscountedPrice(230000, 20),
+    color: "White",
+    badge: "Nuevo",
+    des: "Los New Balance 530 son el equilibrio perfecto entre estilo retro y tecnología moderna, diseñados para quienes buscan comodidad y moda en cada paso. estos tenis destacan por su silueta atemporal y detalles icónicos que complementan cualquier look, desde casual hasta deportivo.",
+    category: "special",
+    inStock: true,
+    sizes: ["40", "41", "42", "43", "44"],
+    brand: "New Balance"
   }
 ];
 
@@ -169,5 +244,7 @@ export const getSimilarProducts = (currentProduct, limit = 4) => {
   // Devolver solo la cantidad especificada
   return shuffled.slice(0, limit);
 };
+
+export const getSpecialOffers = () => products.filter(product => product.category === "special");
 
 export default products;

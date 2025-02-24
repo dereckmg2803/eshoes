@@ -1,0 +1,10 @@
+.hover-effect {
+  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 0.5rem 1rem; /* Add padding to maintain layout */
+  border-radius: 0.5rem; /* Add border-radius to maintain layout */
+}
+
+.hover-effect:hover {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+}
