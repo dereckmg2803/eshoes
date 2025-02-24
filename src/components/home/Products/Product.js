@@ -44,16 +44,16 @@ const Product = (props) => {
           )}
         </div>
         <div className="p-4 flex flex-col gap-1">
-          <h3 className="text-md font-medium text-primeColor">
+          <h3 className="text-sm font-medium text-primeColor">
             {props.productName}
           </h3>
           <div>
             {props.discountedPrice ? (
               <div className="flex items-center gap-2">
-                <p className="text-red-500 text-xs line-through">
+                <p className="text-red-500 line-through" style={{ fontSize: '9px' }}>
                   ${props.price.toLocaleString("es-CO")}
                 </p>
-                <p className="text-black text-sm font-semibold">
+                <p className="text-black text-xs font-semibold">
                   ${props.discountedPrice.toLocaleString("es-CO")}
                 </p>
               </div>
