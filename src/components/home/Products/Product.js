@@ -22,7 +22,7 @@ const Product = ({ productName, img, price, discountedPrice, badge, isSliding })
     <div
       onClick={handleProductClick}
       className={`product-card cursor-pointer w-full relative group transition-all duration-300 ease-in-out transform
-        ${isSliding ? "opacity-50 pointer-events-none" : "hover:shadow-lg md:hover:-translate-y-1"} 
+        ${isSliding ? "opacity-75 blur-sm pointer-events-none" : "hover:shadow-lg md:hover:-translate-y-1"} 
         rounded-lg overflow-hidden shadow-md`}
     >
       {/* Fondo con efecto glassmorphism */}
