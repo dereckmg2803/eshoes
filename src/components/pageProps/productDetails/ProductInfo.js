@@ -50,7 +50,7 @@ const ProductInfo = ({ productInfo }) => {
       </div>
       <p className="text-sm sm:text-base text-gray-600">{productInfo.des}</p>
       <p className="font-medium text-sm sm:text-lg">
-        <span className="font-normal">Color:</span> {productInfo.color}
+        <span className="font-normal">Color</span> {productInfo.color}
       </p>
 
       {/* Selector de talla con botones */}

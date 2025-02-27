@@ -23,6 +23,7 @@ export const products = [
   {
     id: "SHOE001",
     img: bestSellerOne,
+    moreImages: [bestSellerTwo, bestSellerThree, bestSellerFour],
     productName: "Nike Air Max",
     price: 350000,
     discountPercentage: 20,
@@ -38,6 +39,7 @@ export const products = [
   {
     id: "SHOE002",
     img: bestSellerTwo,
+    moreImages: [bestSellerOne, bestSellerThree, bestSellerFour],
     productName: "Adidas Ultraboost",
     price: 180000,
     discountPercentage: 30,
@@ -53,6 +55,7 @@ export const products = [
   {
     id: "SHOE003",
     img: bestSellerThree,
+    moreImages: [bestSellerOne, bestSellerTwo, bestSellerFour],
     productName: "Puma RS-X",
     price: 250000,
     discountPercentage: 20,
@@ -68,6 +71,7 @@ export const products = [
   {
     id: "SHOE004",
     img: bestSellerFour,
+    moreImages: [bestSellerOne, bestSellerTwo, bestSellerThree],
     productName: "New Balance 574",
     price: 220000,
     discountPercentage: 20,
@@ -83,6 +87,7 @@ export const products = [
   {
     id: "SHOE005",
     img: newArrOne,
+    moreImages: [newArrTwo, newArrThree, newArrFour],
     productName: "Nike Air Jordan",
     price: 450000,
     discountPercentage: 20,
@@ -98,6 +103,7 @@ export const products = [
   {
     id: "SHOE006",
     img: newArrTwo,
+    moreImages: [newArrOne, newArrThree, newArrFour],
     productName: "Adidas Superstar",
     price: 200000,
     discountPercentage: 20,
@@ -113,6 +119,7 @@ export const products = [
   {
     id: "SHOE007",
     img: newArrThree,
+    moreImages: [newArrOne, newArrTwo, newArrFour],
     productName: "Vans Old Skool",
     price: 180000,
     discountPercentage: 20,
@@ -128,6 +135,7 @@ export const products = [
   {
     id: "SHOE008",
     img: newArrFour,
+    moreImages: [newArrOne, newArrTwo, newArrThree],
     productName: "Converse Chuck Taylor",
     price: 150000,
     discountPercentage: 20,
@@ -137,12 +145,13 @@ export const products = [
     category: "casual",
     des: "Zapatillas Converse Chuck Taylor All Star, un clásico atemporal.",
     inStock: true,
-    sizes: ["37", "38", "39", "40", "41", "42",],
+    sizes: ["37", "38", "39", "40", "41", "42"],
     brand: "Converse"
   },
   {
     id: "SHOE009",
     img: newArrOne,
+    moreImages: [newArrTwo, newArrThree, newArrFour],
     productName: "Brooks Ghost 14",
     price: 380000,
     discountPercentage: 20,
@@ -158,6 +167,7 @@ export const products = [
   {
     id: "1101",
     img: spfOne,
+    moreImages: [spfTwo, spfThree, spfFour],
     productName: "Cap for Boys",
     price: 3500,
     discountPercentage: 20,
@@ -173,7 +183,7 @@ export const products = [
   {
     id: "1102",
     img: spfTwo,
-    moreImages: [spfTwo, spfFour],
+    moreImages: [spfOne, spfThree, spfFour],
     productName: "Adidas Samba",
     price: 190000,
     discountPercentage: 20,
@@ -189,7 +199,7 @@ export const products = [
   {
     id: "1103",
     img: spfThree,
-    moreImages: [spfThree, spfFour],
+    moreImages: [spfOne, spfTwo, spfFour],
     productName: "Headphones",
     price: 2500,
     discountPercentage: 20,
@@ -205,6 +215,7 @@ export const products = [
   {
     id: "1104",
     img: spfFour,
+    moreImages: [spfOne, spfTwo, spfThree],
     productName: "New Balance 530",
     price: 230000,
     discountPercentage: 20,

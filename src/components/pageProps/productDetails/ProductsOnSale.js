@@ -21,9 +21,7 @@ const ProductsOnSale = () => {
 
   return (
     <div className="md:border-l md:pl-8">
-      <h3 className="font-titleFont text-xl font-semibold mb-6 underline underline-offset-4 decoration-[1px]">
-        Productos Similares
-      </h3>
+
       <div className="flex flex-col gap-4">
         {similarProducts.map((item) => (
           <div
