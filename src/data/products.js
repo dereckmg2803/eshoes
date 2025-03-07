@@ -1,3 +1,6 @@
+// Modificación de src/data/products.js
+// Añadir género como propiedad a los productos
+
 import {
   bestSellerOne,
   bestSellerTwo,
@@ -23,7 +26,7 @@ export const products = [
   {
     id: "SHOE001",
     img: bestSellerOne,
-    moreImages: [bestSellerTwo, bestSellerThree, bestSellerFour],
+    moreImages: [bestSellerOne, bestSellerThree, bestSellerFour],
     productName: "Nike Air Max",
     price: 350000,
     discountPercentage: 20,
@@ -34,12 +37,13 @@ export const products = [
     des: "Zapatillas deportivas Nike Air Max con tecnología de amortiguación superior.",
     inStock: true,
     sizes: ["38", "39", "40", "41", "42"],
-    brand: "Nike"
+    brand: "Nike",
+    collection: "hombre" // Añadido colección
   },
   {
     id: "SHOE002",
     img: bestSellerTwo,
-    moreImages: [bestSellerOne, bestSellerThree, bestSellerFour],
+    moreImages: [bestSellerTwo, bestSellerThree, bestSellerFour],
     productName: "Adidas Ultraboost",
     price: 180000,
     discountPercentage: 30,
@@ -50,12 +54,13 @@ export const products = [
     des: "Zapatillas Adidas Ultraboost con tecnología Boost para máximo confort.",
     inStock: true,
     sizes: ["39", "40", "41", "42", "43"],
-    brand: "Adidas"
+    brand: "Adidas",
+    collection: "hombre" // Añadido colección
   },
   {
     id: "SHOE003",
     img: bestSellerThree,
-    moreImages: [bestSellerOne, bestSellerTwo, bestSellerFour],
+    moreImages: [bestSellerThree, bestSellerTwo, bestSellerFour],
     productName: "Puma RS-X",
     price: 250000,
     discountPercentage: 20,
@@ -66,12 +71,13 @@ export const products = [
     des: "Zapatillas Puma RS-X con diseño retro y tecnología moderna.",
     inStock: true,
     sizes: ["37", "38", "39", "40", "41"],
-    brand: "Puma"
+    brand: "Puma",
+    collection: "mujer" // Añadido colección
   },
   {
     id: "SHOE004",
     img: bestSellerFour,
-    moreImages: [bestSellerOne, bestSellerTwo, bestSellerThree],
+    moreImages: [bestSellerFour, bestSellerTwo, bestSellerThree],
     productName: "New Balance 574",
     price: 220000,
     discountPercentage: 20,
@@ -82,12 +88,13 @@ export const products = [
     des: "Clásicas zapatillas New Balance 574 con diseño atemporal.",
     inStock: true,
     sizes: ["40", "41", "42", "43", "44"],
-    brand: "New Balance"
+    brand: "New Balance",
+    collection: "hombre" // Añadido colección
   },
   {
     id: "SHOE005",
     img: newArrOne,
-    moreImages: [newArrTwo, newArrThree, newArrFour],
+    moreImages: [newArrOne, newArrThree, newArrFour],
     productName: "Nike Air Jordan",
     price: 450000,
     discountPercentage: 20,
@@ -98,12 +105,13 @@ export const products = [
     des: "Icónicas zapatillas Air Jordan para baloncesto y estilo urbano.",
     inStock: true,
     sizes: ["41", "42", "43", "44", "45"],
-    brand: "Nike"
+    brand: "Nike",
+    collection: "hombre" // Añadido colección
   },
   {
     id: "SHOE006",
     img: newArrTwo,
-    moreImages: [newArrOne, newArrThree, newArrFour],
+    moreImages: [newArrTwo, newArrThree, newArrFour],
     productName: "Adidas Superstar",
     price: 200000,
     discountPercentage: 20,
@@ -114,12 +122,13 @@ export const products = [
     des: "Zapatillas Adidas Superstar, un ícono del estilo urbano.",
     inStock: true,
     sizes: ["36", "37", "38", "39", "40"],
-    brand: "Adidas"
+    brand: "Adidas",
+    collection: "mujer" // Añadido colección
   },
   {
     id: "SHOE007",
     img: newArrThree,
-    moreImages: [newArrOne, newArrTwo, newArrFour],
+    moreImages: [newArrThree, newArrTwo, newArrFour],
     productName: "Vans Old Skool",
     price: 180000,
     discountPercentage: 20,
@@ -130,12 +139,13 @@ export const products = [
     des: "Clásicas zapatillas Vans Old Skool perfectas para skateboarding.",
     inStock: true,
     sizes: ["38", "39", "40", "41", "42"],
-    brand: "Vans"
+    brand: "Vans",
+    collection: "ninos" // Añadido colección
   },
   {
     id: "SHOE008",
     img: newArrFour,
-    moreImages: [newArrOne, newArrTwo, newArrThree],
+    moreImages: [newArrFour, newArrTwo, newArrThree],
     productName: "Converse Chuck Taylor",
     price: 150000,
     discountPercentage: 20,
@@ -146,12 +156,13 @@ export const products = [
     des: "Zapatillas Converse Chuck Taylor All Star, un clásico atemporal.",
     inStock: true,
     sizes: ["37", "38", "39", "40", "41", "42"],
-    brand: "Converse"
+    brand: "Converse",
+    collection: "ninos" // Añadido colección
   },
   {
     id: "SHOE009",
     img: newArrOne,
-    moreImages: [newArrTwo, newArrThree, newArrFour],
+    moreImages: [newArrOne, newArrThree, newArrFour],
     productName: "Brooks Ghost 14",
     price: 380000,
     discountPercentage: 20,
@@ -162,12 +173,13 @@ export const products = [
     des: "Zapatillas Brooks Ghost 14 con tecnología DNA LOFT para máxima amortiguación.",
     inStock: true,
     sizes: ["39", "40", "41", "42", "43"],
-    brand: "Brooks"
+    brand: "Brooks",
+    collection: "mujer" // Añadido colección
   },
   {
     id: "1101",
     img: spfOne,
-    moreImages: [spfTwo, spfThree, spfFour],
+    moreImages: [spfOne, spfThree, spfFour],
     productName: "Cap for Boys",
     price: 3500,
     discountPercentage: 20,
@@ -178,12 +190,13 @@ export const products = [
     category: "special",
     inStock: true,
     sizes: ["S", "M", "L"],
-    brand: "Generic"
+    brand: "Generic",
+    collection: "ninos" // Añadido colección
   },
   {
     id: "1102",
     img: spfTwo,
-    moreImages: [spfOne, spfThree, spfFour],
+    moreImages: [spfTwo, spfThree, spfFour],
     productName: "Adidas Samba",
     price: 190000,
     discountPercentage: 20,
@@ -194,12 +207,13 @@ export const products = [
     category: "special",
     inStock: true,
     sizes: ["38", "39", "40", "41", "42"],
-    brand: "Adidas"
+    brand: "Adidas",
+    collection: "originales" // Añadido colección
   },
   {
     id: "1103",
     img: spfThree,
-    moreImages: [spfOne, spfTwo, spfFour],
+    moreImages: [spfThree, spfTwo, spfFour],
     productName: "Headphones",
     price: 2500,
     discountPercentage: 20,
@@ -210,12 +224,13 @@ export const products = [
     category: "special",
     inStock: true,
     sizes: ["One Size"],
-    brand: "Generic"
+    brand: "Generic",
+    collection: "originales" // Añadido colección
   },
   {
     id: "1104",
     img: spfFour,
-    moreImages: [spfOne, spfTwo, spfThree],
+    moreImages: [spfFour, spfTwo, spfThree],
     productName: "New Balance 530",
     price: 230000,
     discountPercentage: 20,
@@ -226,7 +241,8 @@ export const products = [
     category: "special",
     inStock: true,
     sizes: ["40", "41", "42", "43", "44"],
-    brand: "New Balance"
+    brand: "New Balance",
+    collection: "originales" // Añadido colección
   }
 ];
 
@@ -239,6 +255,10 @@ export const getNewArrivals = () => {
   return products.slice(-5);
 };
 export const getBestSellers = () => products.slice(0, 4); // Primeros 4 productos como best sellers
+
+// Nueva función para obtener productos por colección
+export const getProductsByCollection = (collection) => 
+  products.filter(product => product.collection === collection.toLowerCase());
 
 // Función para obtener productos similares
 export const getSimilarProducts = (currentProduct, limit = 4) => {

@@ -54,12 +54,6 @@ const ProductDetails = () => {
 
   return (
     <div className="w-full max-w-6xl mx-auto flex flex-col gap-8 bg-gray-100 p-4 pb-10 relative">
-      {/* Fondo desenfocado */}
-      <div
-        className="fixed top-0 left-0 w-full h-screen bg-cover bg-center blur-lg scale-110"
-        style={{ backgroundImage: `url(${productInfo.img})`, zIndex: -1 }}
-      ></div>
-
       {/* Contenedor de la imagen principal y previews */}
       <div className="fixed top-0 left-0 w-full h-screen flex flex-col items-center justify-center z-10">
         {/* Imagen principal del producto */}
