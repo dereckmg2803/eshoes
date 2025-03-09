@@ -54,12 +54,12 @@ const ProductDetails = () => {
 
   return (
     <div className="w-full max-w-6xl mx-auto flex flex-col gap-8 bg-gray-100 p-4 pb-10 relative">
-      {/* Contenedor de la imagen principal y previews */}
-      <div className="fixed top-0 left-0 w-full h-screen flex flex-col items-center justify-center z-10">
+      {/* Producto y previews - ahora con posición sticky en lugar de fixed */}
+      <div className="sticky top-0 w-full flex flex-col items-center justify-center z-10 bg-gray-100 pt-4 pb-8">
         {/* Imagen principal del producto */}
         <div className="w-full flex items-center justify-center">
           <img
-            className="max-w-[90%] max-h-[70vh] object-contain"
+            className="max-w-[90%] max-h-[50vh] object-contain"
             src={productInfo.moreImages?.[currentImageIndex] || productInfo.img}
             alt={productInfo.productName}
           />
@@ -70,7 +70,7 @@ const ProductDetails = () => {
           {productInfo.moreImages?.slice(0, 3).map((image, index) => (
             <div
               key={index}
-              className="w-24 h-24 flex items-center justify-center overflow-hidden rounded-lg cursor-pointer border-2 border-transparent hover:border-blue-500 transition-all"
+              className="w-16 h-16 md:w-24 md:h-24 flex items-center justify-center overflow-hidden rounded-lg cursor-pointer border-2 border-transparent hover:border-blue-500 transition-all"
               onClick={() => handlePreviewClick(index)}
             >
               <img
@@ -83,9 +83,9 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      {/* Tarjeta de información del producto */}
+      {/* Tarjeta de información del producto - eliminado el margen superior fijo */}
       <div
-        className="relative z-20 mt-[53vh] p-6 rounded-2xl shadow-lg transition-all duration-500"
+        className="relative z-20 p-6 rounded-2xl shadow-lg transition-all duration-500"
         style={{
           transform: `scale(${scaleValue})`,
           opacity: 1,
@@ -111,6 +111,9 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
+      
+      {/* Espaciador para asegurar que haya espacio suficiente antes del footer */}
+      <div className="h-16"></div>
     </div>
   );
 };
