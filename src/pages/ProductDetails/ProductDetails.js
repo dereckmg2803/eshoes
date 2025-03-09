@@ -53,10 +53,10 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="w-full max-w-6xl mx-auto flex flex-col gap-8 bg-gray-100 p-4 pb-10 relative">
-      {/* Producto y previews - ahora con posición sticky en lugar de fixed */}
-      <div className="sticky top-0 w-full flex flex-col items-center justify-center z-10 bg-gray-100 pt-4 pb-8">
-        {/* Imagen principal del producto */}
+    <div className="w-full max-w-6xl mx-auto flex flex-col gap-4 bg-gray-100 p-4 pb-10 relative">
+      {/* Sección sticky con las imágenes */}
+      <div className="sticky top-0 w-full flex flex-col items-center justify-center z-10 bg-gray-100 pt-4 pb-4">
+        {/* Imagen principal */}
         <div className="w-full flex items-center justify-center">
           <img
             className="max-w-[90%] max-h-[50vh] object-contain"
@@ -65,7 +65,7 @@ const ProductDetails = () => {
           />
         </div>
 
-        {/* Previews de las imágenes */}
+        {/* Previews de imágenes */}
         <div className="w-full flex justify-center mt-4 space-x-2">
           {productInfo.moreImages?.slice(0, 3).map((image, index) => (
             <div
@@ -83,9 +83,9 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      {/* Tarjeta de información del producto - eliminado el margen superior fijo */}
+      {/* Tarjeta de información con posición ajustada */}
       <div
-        className="relative z-20 p-6 rounded-2xl shadow-lg transition-all duration-500"
+        className="relative z-20 p-6 rounded-2xl shadow-lg transition-all duration-500 -mt-4"
         style={{
           transform: `scale(${scaleValue})`,
           opacity: 1,
@@ -95,16 +95,17 @@ const ProductDetails = () => {
           position: "relative",
         }}
       >
-        {/* Fondo de la tarjeta con efecto glass separado */}
+        {/* Efecto de vidrio esmerilado */}
         <div
           className="absolute inset-0 rounded-2xl backdrop-blur-lg"
           style={{ backgroundColor: "rgba(255, 255, 255, 0.3)", zIndex: -1 }}
         ></div>
 
-        {/* Contenido de la tarjeta sin desenfoque */}
+        {/* Contenido de la tarjeta */}
         <div className="relative">
           <ProductInfo productInfo={productInfo} />
 
+          {/* Productos relacionados */}
           <div className="mt-6 border-t pt-4">
             <h2 className="text-lg font-semibold mb-3">Productos similares</h2>
             {stableProductsOnSale}
@@ -112,7 +113,7 @@ const ProductDetails = () => {
         </div>
       </div>
       
-      {/* Espaciador para asegurar que haya espacio suficiente antes del footer */}
+      {/* Espaciador final */}
       <div className="h-16"></div>
     </div>
   );
