@@ -30,12 +30,12 @@ const ColeccionPagination = ({ itemsPerPage, collection }) => {
   return (
     <>
       {/* Botón de filtrado por precio */}
-      <div className="flex justify-end mb-6">
+      <div className="mb-0">
         <button
           onClick={() => setSortOrder(prev => prev === "asc" ? "desc" : "asc")}
-          className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors text-sm"
+          className="bg-white text-black px-4 py-2 rounded-lg hover:bg-white-800 transition-colors text-sm"
         >
-          Ordenar: {sortOrder === "asc" ? "Menor a Mayor ↑" : "Mayor a Menor ↓"}
+          {sortOrder === "asc" ? "Menor a Mayor ↑" : "Mayor a Menor ↓"}
         </button>
       </div>
 
@@ -54,7 +54,9 @@ const ColeccionPagination = ({ itemsPerPage, collection }) => {
                 des={item.des}
                 color={item.color}
                 moreImages={item.moreImages} 
-                fullProductData={item}
+                category={item.category}  // Añadir categoría
+                sizes={item.sizes}        // Añadir tallas
+                fullProductData={item}    // Pasar todos los datos del producto
               />
             </div>
           ))

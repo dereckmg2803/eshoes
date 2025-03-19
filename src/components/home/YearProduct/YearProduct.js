@@ -7,7 +7,7 @@ import BlurText from "./BlurText"; // Import the BlurText component
 
 const YearProduct = () => {
   return (
-    <Link to="/shop">
+    <Link to="/Hombre">
       <div className="w-full h-80 bg-[#f3f3f3] md:bg-transparent relative font-titleFont">
         <Image
           className="w-full h-full object-cover hidden md:inline-block"

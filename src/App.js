@@ -21,7 +21,6 @@ import Journal from "./pages/Journal/Journal";
 import Offer from "./pages/Offer/Offer";
 import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
-import Shop from "./pages/Shop/Shop";
 import TerminosServicio from "./pages/terminosServicio/TerminosServicio"; // Ajusta la ruta según tu estructura de archivos
 import PoliticaReembolso from "./pages/PoliticaReembolso/PoliticaReembolso";
 import Hombre from "./pages/colecciones/Hombre";
@@ -76,7 +75,7 @@ const router = createBrowserRouter(
         <Route index element={<Home />} />
         <Route path="/politica-reembolso" element={<PoliticaReembolso />} />
 
-        <Route path="/shop" element={<Shop />} />
+
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/journal" element={<Journal />} />

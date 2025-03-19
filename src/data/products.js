@@ -260,12 +260,15 @@ export const getBestSellers = () => products.slice(0, 4); // Primeros 4 producto
 export const getProductsByCollection = (collection) => 
   products.filter(product => product.collection === collection.toLowerCase());
 
-// Función para obtener productos similares
+// Mejorar la función para obtener productos similares
 export const getSimilarProducts = (currentProduct, limit = 4) => {
-  // Filtrar productos de la misma categoría, excluyendo el producto actual
+  if (!currentProduct) return [];
+  
+  // Filtrar productos que coincidan con la categoría o colección
   const similarProducts = products.filter(
     product => 
-      product.category === currentProduct.category && 
+      (product.category === currentProduct.category || 
+       product.collection === currentProduct.collection) && 
       product.id !== currentProduct.id
   );
   

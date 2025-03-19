@@ -141,7 +141,22 @@ const Header = () => {
                   <div className="flex-1">
                     <h3 className="font-medium">{item.productName}</h3>
                     <p className="text-sm text-gray-600">{item.brand}</p>
-                    <p className="text-sm font-semibold">${item.price.toLocaleString('es-CO')}</p>
+                    <div className="flex items-center gap-2">
+                      {item.discountPercentage ? (
+                        <>
+                          <p className="text-gray-500 line-through text-sm">
+                            ${item.price.toLocaleString('es-CO')}
+                          </p>
+                          <p className="text-primeColor font-bold">
+                            ${item.discountedPrice}
+                          </p>
+                        </>
+                      ) : (
+                        <p className="text-primeColor font-bold">
+                          ${item.price.toLocaleString('es-CO')}
+                        </p>
+                      )}
+                    </div>
                   </div>
                   <div className="text-xs px-2 py-1 bg-gray-100 rounded">
                     {item.category}
@@ -339,7 +354,7 @@ const Header = () => {
                   <div
                     key={item.id}
                     onClick={() => handleProductClick(item)}
-                    className="flex items-center gap-3 p-3 border-b cursor-pointer"
+                    className="flex items-center gap-3 p-3 border-b cursor-pointer hover:bg-gray-50"
                   >
                     <img
                       src={item.img}
@@ -348,10 +363,23 @@ const Header = () => {
                     />
                     <div>
                       <p className="font-semibold">{item.productName}</p>
-                      <p className="text-sm">{item.brand}</p>
-                      <p className="text-primeColor font-bold">
-                        ${item.price.toLocaleString('es-CO')}
-                      </p>
+                      <p className="text-sm text-gray-600">{item.brand}</p>
+                      <div className="flex items-center gap-2">
+                        {item.discountPercentage ? (
+                          <>
+                            <p className="text-gray-500 line-through text-sm">
+                              ${item.price.toLocaleString('es-CO')}
+                            </p>
+                            <p className="text-primeColor font-bold">
+                              ${item.discountedPrice}
+                            </p>
+                          </>
+                        ) : (
+                          <p className="text-primeColor font-bold">
+                            ${item.price.toLocaleString('es-CO')}
+                          </p>
+                        )}
+                      </div>
                     </div>
                   </div>
                 ))}
