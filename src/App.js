@@ -23,6 +23,7 @@ import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import TerminosServicio from "./pages/terminosServicio/TerminosServicio"; // Ajusta la ruta según tu estructura de archivos
 import PoliticaReembolso from "./pages/PoliticaReembolso/PoliticaReembolso";
+import PoliticasDePrivacidad from "./pages/politicasdeprivacidad/politicasdeprivacidad";
 import Hombre from "./pages/colecciones/Hombre";
 import Mujer from "./pages/colecciones/Mujer";
 import Ninos from "./pages/colecciones/Ninos";
@@ -41,29 +42,7 @@ const Layout = () => {
       <Footer />
       <FooterBottom />
       
-      {/* Burbuja de WhatsApp */}
-      <a
-        href="https://wa.me/573158591463?text=¡Hola!%20Quiero%20este%20par%20de%20tenis."
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          position: "fixed",
-          bottom: "20px",
-          right: "20px",
-          backgroundColor: "#25D366",
-          color: "white",
-          borderRadius: "50%",
-          padding: "15px",
-          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-          zIndex: "1000",
-        }}
-      >
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-          alt="WhatsApp"
-          style={{ width: "30px", height: "30px" }}
-        />
-      </a>
+      
     </div>
   );
 };
@@ -74,6 +53,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="/politica-reembolso" element={<PoliticaReembolso />} />
+        
 
 
         <Route path="/about" element={<About />} />
@@ -83,7 +63,8 @@ const router = createBrowserRouter(
         <Route path="/product/:_id" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/paymentgateway" element={<Payment />} />
-        <Route path="/terminosServicio" element={<TerminosServicio />} /> {/* ✅ Nueva ruta añadida */}
+        <Route path="/terminosServicio" element={<TerminosServicio />} /> 
+        <Route path="/politicasdeprivacidad" element={<PoliticasDePrivacidad />} />{/* ✅ Nueva ruta añadida */}
       </Route>
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />

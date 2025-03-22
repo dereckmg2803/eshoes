@@ -11,9 +11,9 @@ const Footer = () => {
             <a href="https://wa.me/3158591463" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400">
               WhatsApp
             </a>
-            <a href="/colecciones" className="hover:text-purple-400">
-              Colecciones
-            </a>
+            <Link to="/politicasdeprivacidad" className="hover:text-purple-400">
+  Politicas de privacidad
+</Link>
             <Link to="/terminosServicio" className="hover:text-purple-400">
   Términos del servicio
 </Link>

@@ -19,7 +19,8 @@ const ProductInfo = ({ productInfo }) => {
         size: selectedSize, // Añade la talla seleccionada
         quantity: 1, // Cantidad inicial
         image: productInfo.img,
-        price: productInfo.discountedPrice // Añade el precio con descuento
+        price: productInfo.discountedPrice, // Añade el precio con descuento
+        originalPrice: productInfo.price
       })
     );
 

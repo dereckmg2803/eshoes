@@ -6,6 +6,7 @@ import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import { resetCart } from "../../redux/orebiSlice";
 import { emptyCart } from "../../assets/images/index";
 import ItemCard from "./ItemCard";
+import { FiShoppingBag, FiTrash2, FiTag, FiArrowRight } from "react-icons/fi";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -38,103 +39,129 @@ const Cart = () => {
 
   return (
     <div className="max-w-container mx-auto px-4">
-      <Breadcrumbs title="" />
+      
       {products.length > 0 ? (
         <div className="pb-20">
-          <div className="w-full h-20 bg-[#F5F7F7] text-primeColor hidden lgl:grid grid-cols-5 place-content-center px-6 text-lg font-titleFont font-semibold">
-            <h2 className="col-span-2">Product</h2>
-            <h2>Price</h2>
-            <h2>Quantity</h2>
-            <h2>Sub Total</h2>
-          </div>
-          <div className="mt-5">
-            {products.map((item) => (
-              <div key={item._id}>
-                <ItemCard item={item} />
-              </div>
-            ))}
+          {/* Encabezado mejorado */}
+          <div className="w-full bg-gradient-to-r from-indigo-50 to-blue-50 rounded-xl p-6 mb-8">
+            <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
+              <FiShoppingBag className="text-indigo-600" />
+              Tu Carrito de Compras
+              <span className="text-indigo-600 ml-2">({products.length})</span>
+            </h1>
           </div>
 
-          <button
-            onClick={() => dispatch(resetCart())}
-            className="py-2 px-10 bg-red-500 text-white font-semibold uppercase mb-4 hover:bg-red-700 duration-300"
-          >
-            Reset cart
-          </button>
-
-          <div className="flex flex-col mdl:flex-row justify-between border py-4 px-4 items-center gap-2 mdl:gap-0">
-            <div className="flex items-center gap-4">
-              <input
-                className="w-44 mdl:w-52 h-8 px-4 border text-primeColor text-sm outline-none border-gray-400"
-                type="text"
-                placeholder="Coupon Number"
-              />
-              <p className="text-sm mdl:text-base font-semibold">
-                Apply Coupon
-              </p>
+          {/* Lista de productos */}
+          <div className="grid gap-6">
+            <div className="hidden lg:grid grid-cols-12 gap-4 bg-gray-50 p-4 rounded-lg">
+              <div className="col-span-6 font-semibold text-gray-600">Producto</div>
+              <div className="col-span-2 font-semibold text-gray-600">Precio</div>
+              <div className="col-span-2 font-semibold text-gray-600">Cantidad</div>
+              <div className="col-span-2 font-semibold text-gray-600 text-right">Total</div>
             </div>
-            <p className="text-lg font-semibold">Update Cart</p>
+            
+            <div className="space-y-4">
+              {products.map((item) => (
+                <motion.div
+                  key={item._id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ItemCard item={item} />
+                </motion.div>
+              ))}
+            </div>
           </div>
-          <div className="max-w-7xl gap-4 flex justify-end mt-4">
-            <div className="w-96 flex flex-col gap-4">
-              <h1 className="text-2xl font-semibold text-right">Cart totals</h1>
-              <div>
-                <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
-                  Subtotal
-                  <span className="font-semibold tracking-wide font-titleFont">
-                    {formatPrice(totalAmt)}
-                  </span>
-                </p>
-                <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
-                  Shipping Charge
-                  <span className="font-semibold tracking-wide font-titleFont">
-                    {formatPrice(shippingCharge)}
-                  </span>
-                </p>
-                <p className="flex items-center justify-between border-[1px] border-gray-400 py-1.5 text-lg px-4 font-medium">
-                  Total
-                  <span className="font-bold tracking-wide text-lg font-titleFont">
+
+          {/* Acciones del carrito */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 mt-8">
+            <button
+              onClick={() => dispatch(resetCart())}
+              className="flex items-center gap-2 px-6 py-3 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+            >
+              <FiTrash2 />
+              Vaciar Carrito
+            </button>
+            
+            <div className="flex-1 max-w-md">
+              <div className="flex gap-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <input
+                  className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  type="text"
+                  placeholder="Código de descuento"
+                />
+                <button className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2">
+                  <FiTag />
+                  Aplicar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Resumen de compra */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="mt-12 bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h2 className="text-2xl font-bold mb-6 text-gray-800">Resumen de Compra</h2>
+            
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600">Subtotal:</span>
+                <span className="font-semibold">{formatPrice(totalAmt)}</span>
+              </div>
+              
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600">Envío:</span>
+                <span className="font-semibold">{formatPrice(shippingCharge)}</span>
+              </div>
+              
+              <div className="border-t pt-4 mt-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-xl font-bold text-gray-800">Total:</span>
+                  <span className="text-2xl font-bold text-indigo-600">
                     {formatPrice(totalAmt + shippingCharge)}
                   </span>
-                </p>
-              </div>
-              <div className="flex justify-end">
-                <Link to="/paymentgateway">
-                  <button className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300">
-                    Proceed to Checkout
-                  </button>
-                </Link>
+                </div>
               </div>
             </div>
-          </div>
+
+            <Link to="/paymentgateway">
+              <button className="w-full mt-8 py-4 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 text-lg">
+                Finalizar Compra
+                <FiArrowRight className="text-xl" />
+              </button>
+            </Link>
+          </motion.div>
         </div>
       ) : (
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.4 }}
-          className="flex flex-col mdl:flex-row justify-center items-center gap-4 pb-20"
+          className="flex flex-col md:flex-row justify-center items-center gap-8 pb-20"
         >
-          <div>
+          <div className="max-w-xs">
             <img
-              className="w-80 rounded-lg p-4 mx-auto"
+              className="w-full h-auto"
               src={emptyCart}
-              alt="emptyCart"
+              alt="Carrito vacío"
             />
           </div>
-          <div className="max-w-[500px] p-4 py-8 bg-white flex gap-4 flex-col items-center rounded-md shadow-lg">
-            <h1 className="font-titleFont text-xl font-bold uppercase">
-              Your Cart feels lonely.
-            </h1>
-            <p className="text-sm text-center px-10 -mt-2">
-              Your Shopping cart lives to serve. Give it purpose - fill it with
-              books, electronics, videos, etc. and make it happy.
-            </p>
-            <Link to="/shop">
-              <button className="bg-primeColor rounded-md cursor-pointer hover:bg-black active:bg-gray-900 px-8 py-2 font-titleFont font-semibold text-lg text-gray-200 hover:text-white duration-300">
-                Continue Shopping
-              </button>
-            </Link>
+          <div className="text-center max-w-md">
+            <div className="bg-gradient-to-r from-indigo-50 to-blue-50 p-6 rounded-2xl">
+              <h1 className="text-3xl font-bold text-gray-800 mb-4">Tu carrito está vacío</h1>
+              <p className="text-gray-600 mb-6">
+                Explora nuestra colección y encuentra productos increíbles para agregar a tu carrito.
+              </p>
+              <Link to="/shop">
+                <button className="px-8 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2 mx-auto">
+                  <FiShoppingBag />
+                  Comenzar a comprar
+                </button>
+              </Link>
+            </div>
           </div>
         </motion.div>
       )}
