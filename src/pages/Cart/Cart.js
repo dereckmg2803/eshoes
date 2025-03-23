@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import { resetCart } from "../../redux/orebiSlice";
 import { emptyCart } from "../../assets/images/index";
 import ItemCard from "./ItemCard";
@@ -28,13 +27,11 @@ const Cart = () => {
   }, [products]);
 
   useEffect(() => {
-    if (totalAmt <= 200) {
-      setShippingCharge(30);
-    } else if (totalAmt <= 400) {
-      setShippingCharge(25);
-    } else if (totalAmt > 401) {
-      setShippingCharge(20);
-    }
+    if (totalAmt <= 100) {
+      setShippingCharge(10);
+    } else if (totalAmt >= 101) {
+      setShippingCharge(0);
+    } 
   }, [totalAmt]);
 
   return (
